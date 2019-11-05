@@ -11,42 +11,42 @@ const routes = [{
 }, {
   path: '/home',
   name: 'home',
-  components: () => import("../views/home.vue")
+  component: () => import("../views/home.vue")
 },
 {
   path: '/news',
   name: 'news',
-  components: () => import('../views/news.vue')
+  component: () => import('../views/news.vue')
 },
 {
   path: "/hot",
   name: "hot",
-  components: () => import("../views/hot.vue")
+  component: () => import("../views/hot.vue")
 },
 {
   path: "/4k",
   name: "4k",
-  components: () => import("../views/4k.vue")
+  component: () => import("../views/4k.vue")
 },
 {
   path: "/category",
   name: "category",
-  components: () => import("../views/category.vue")
+  component: () => import("../views/category.vue")
 },
 {
   path: "/bing",
   name: "bing",
-  components: () => import("../views/bing.vue")
+  component: () => import("../views/bing.vue")
 },
 {
   path: "/daily",
   name: "daily",
-  components: () => import("../views/daily.vue")
+  component: () => import("../views/daily.vue")
 },
 {
   path: "/individual",
   name: "individual",
-  components: () => import("../views/individual.vue")
+  component: () => import("../views/individual.vue")
 }
 ]
 
