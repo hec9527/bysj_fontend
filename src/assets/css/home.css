@@ -1,3 +1,86 @@
-p{
-    color:red;
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.mask {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: rgba(30, 30, 30, .25);
+}
+
+.bg-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.bg-image {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    margin: 0 auto;
+}
+
+.title-cover {
+    background: rgba(255, 255, 255, .25);
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    padding: 30px;
+    padding-right: 50px;
+}
+
+.title-head {
+    font-family: '楷体';
+    font-size: 55px;
+    color: rgb(250, 250, 250);
+}
+
+.title-commit {
+    padding-left: 10px;
+    padding-top: 15px;
+    line-height: 1.8;
+    color: rgb(200, 200, 200);
+    font-size: 12px;
+}
+
+
+.footer-cover {
+    position: absolute;
+    bottom: 15px;
+    font-size: 11px;
+    color: rgb(201, 201, 201);
+    text-align: center;
+    width: 100%;
+}
+
+.link {
+    display: inline-block;
+    color: rgb(80, 137, 183);
+    text-decoration: none;
+}
+
+.link:hover {
+    color: rgb(250, 250, 250);
+}
+
+
+.link::before {
+    content: "";
+    position: absolute;
+    width: inherit;
+    height: 1px;
+    bottom: 2px;
+    background: #fff;
+
+}
+
+
+.link:hover {
+    cursor: pointer;
 }
