@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div id="nav">
+        <div id="nav" class="animation fead-down">
             <router-link class="nav-items" to="/home">首页</router-link>
             <router-link class="nav-items" to="/category">分类</router-link>
             <router-link class="nav-items" to="/bing">必应美图</router-link>
@@ -14,4 +14,4 @@
 </template>
 
 <style src="@/assets/css/app.css"></style>
-<script src="@/assets/js/app.js"></script>
+<style src="@/assets/css/animation.css"></style>
