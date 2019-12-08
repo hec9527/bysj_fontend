@@ -27,9 +27,15 @@
         left: 0;
         z-index: 10;
         font-size: 14px;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.3);
         padding: 7px 20px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    #nav:hover {
+        background: #fff;
+        transition: all 0.2s ease;
     }
 
     .nav-items {
@@ -49,14 +55,16 @@
     .container {
         width: 100vw;
         height: 100vh;
+        position: relative;
         overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
         font-family: 'Open Sans', 'PingFang SC', 'Microsoft YaHei',
             'Helvetica Neue', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', Arial,
             sans-serif;
-        padding-top: 35px;
+    }
+    .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -1,7 +1,9 @@
 <template>
     <div class="container">
         <center>
-            <p>分类</p>
+            分类
         </center>
     </div>
 </template>
+
+<style scoped src="@/assets/css/category.css"></style>
