@@ -45,4 +45,18 @@
         cursor: pointer;
         color: rgb(214, 134, 30);
     }
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Open Sans', 'PingFang SC', 'Microsoft YaHei',
+            'Helvetica Neue', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', Arial,
+            sans-serif;
+        padding-top: 35px;
+    }
 }

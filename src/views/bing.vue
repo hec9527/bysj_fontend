@@ -1,5 +1,5 @@
 <template>
-    <div class="bing">
+    <div class="container">
         <center>
             <p>bing</p>
         </center>

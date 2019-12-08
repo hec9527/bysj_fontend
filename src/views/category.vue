@@ -1,5 +1,5 @@
 <template>
-    <div class="category">
+    <div class="container">
         <center>
             <p>分类</p>
         </center>

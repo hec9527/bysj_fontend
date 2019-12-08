@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="bg"></div>
-        <div class="mask"></div>
+        <div class="mask animation move"></div>
         <h1 class="slogan animation fead-up">
             The Future Of Possible
         </h1>

@@ -32,6 +32,36 @@
     }
 }
 
+.animation.slid-out-left {
+    -webkit-animation: slide-lfet 0.5s linear;
+    -moz-animation: slide-lfet 0.5s linear;
+    -o-animation: slide-lfet 0.5s linear;
+    animation: slide-lfet 0.5s linear;
+}
+
+@keyframes slide-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.animation.move {
+    -webkit-animation: move 50s infinite linear;
+    -moz-animation: move 50s infinite linear;
+    -o-animation: move 50s infinite linear;
+    animation: move 50s infinite linear;
+}
+@keyframes move {
+    0% {
+        background-position: 20% 0;
+    }
+    50% {
+        background-position: 70% 0;
+    }
+}
 /* 动画时间 */
 .animation.duration-300 {
     animation-duration: 300ms !important;
