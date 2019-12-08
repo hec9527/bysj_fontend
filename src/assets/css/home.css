@@ -2,85 +2,51 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Open Sans', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue',
+        'Hiragino Sans GB', 'WenQuanYi Micro Hei', Arial, sans-serif;
 }
 
-.mask {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background: rgba(30, 30, 30, .25);
+@keyframes move {
+    0% {
+        background-position: 20% 0;
+    }
+    50% {
+        background-position: 70% 0;
+    }
 }
 
-.bg-cover {
-    width: 100%;
-    height: 100%;
+.bg {
+    background: url(https://sp-webfront.skypixel.com/skypixel/v2/public/website/assets/1535027674204-f6eca6369ec03e70262b58b0e25cda7b.jpg);
+    background-size: cover;
     position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    filter: blur(10px);
     z-index: -1;
 }
 
-.bg-image {
-    height: 100%;
-    width: auto;
-    position: absolute;
-    margin: 0 auto;
+.slogan {
+    color: white;
+    margin-top: 24px;
+    font-size: 36px;
+    font-weight: 400;
 }
 
-.title-cover {
-    background: rgba(255, 255, 255, .25);
-    position: absolute;
-    top: 30%;
-    left: 10%;
-    padding: 30px;
-    padding-right: 50px;
-}
-
-.title-head {
-    font-family: '楷体';
-    font-size: 55px;
-    color: rgb(250, 250, 250);
-}
-
-.title-commit {
-    padding-left: 10px;
-    padding-top: 15px;
-    line-height: 1.8;
-    color: rgb(200, 200, 200);
-    font-size: 12px;
-}
-
-
-.footer-cover {
-    position: absolute;
-    bottom: 15px;
-    font-size: 11px;
-    color: rgb(201, 201, 201);
-    text-align: center;
-    width: 100%;
-}
-
-.link {
-    display: inline-block;
-    color: rgb(80, 137, 183);
-    text-decoration: none;
-}
-
-.link:hover {
-    color: rgb(250, 250, 250);
-}
-
-
-.link::before {
-    content: "";
-    position: absolute;
-    width: inherit;
-    height: 1px;
-    bottom: 2px;
-    background: #fff;
-
-}
-
-
-.link:hover {
-    cursor: pointer;
+.mask {
+    width: 512px;
+    height: 288px;
+    -webkit-animation: move 100s infinite linear;
+    animation: move 50s infinite;
+    background-image: url(https://sp-webfront.skypixel.com/skypixel/v2/public/website/assets/1535027674204-f6eca6369ec03e70262b58b0e25cda7b.jpg);
+    background-size: cover;
+    -webkit-mask: url(http://www2.djicdn.com/assets/images/v3/logo-black2-145dcb13c56f36a65d084180a42136fa.svg);
+    mask: url(http://www2.djicdn.com/assets/images/v3/logo-black2-145dcb13c56f36a65d084180a42136fa.svg);
+    -webkit-mask-size: cover;
+    mask-size: cover;
 }

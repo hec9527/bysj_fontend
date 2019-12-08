@@ -1,11 +1,22 @@
-@media (min-width:1024px) {
+@media (min-width: 1024px) {
     * {
         padding: 0;
         margin: 0;
         list-style: none;
-        user-select: none;
-        -moz-user-select: none;
         -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    #app {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
     }
 
     #nav {
@@ -14,11 +25,10 @@
         top: 0;
         right: 0;
         left: 0;
-        margin: 0 auto;
         z-index: 10;
         font-size: 14px;
         background: rgba(255, 255, 255, 0.2);
-        padding: 5px 20px;
+        padding: 7px 20px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -26,6 +36,7 @@
         margin: 0 7px 0 8px;
         text-decoration: none;
         color: #000;
+        /* color: #fff; */
     }
 
     .nav-this,
@@ -34,6 +45,4 @@
         cursor: pointer;
         color: rgb(214, 134, 30);
     }
-
-
 }
