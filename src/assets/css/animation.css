@@ -1,3 +1,4 @@
+/* 动画API */
 .animation {
     position: relative;
 }
@@ -5,6 +6,26 @@
 .animation.fead-up {
     animation: fead-up 1s ease-out;
 }
+
+.animation.fead-down {
+    animation: fead-down 0.5s ease-out;
+}
+
+.animation.move {
+    -webkit-animation: move 50s infinite linear;
+    -moz-animation: move 50s infinite linear;
+    -o-animation: move 50s infinite linear;
+    animation: move 50s infinite linear;
+}
+
+.animation.slid-out-left {
+    -webkit-animation: slide-lfet 0.5s linear;
+    -moz-animation: slide-lfet 0.5s linear;
+    -o-animation: slide-lfet 0.5s linear;
+    animation: slide-lfet 0.5s linear;
+}
+
+/* 动画关键帧 */
 
 @keyframes fead-up {
     from {
@@ -19,10 +40,6 @@
     }
 }
 
-.animation.fead-down {
-    animation: fead-down 0.5s ease-out;
-}
-
 @keyframes fead-down {
     from {
         transform: translateY(-30px);
@@ -30,13 +47,6 @@
     to {
         transform: translateY(0);
     }
-}
-
-.animation.slid-out-left {
-    -webkit-animation: slide-lfet 0.5s linear;
-    -moz-animation: slide-lfet 0.5s linear;
-    -o-animation: slide-lfet 0.5s linear;
-    animation: slide-lfet 0.5s linear;
 }
 
 @keyframes slide-left {
@@ -48,12 +58,6 @@
     }
 }
 
-.animation.move {
-    -webkit-animation: move 50s infinite linear;
-    -moz-animation: move 50s infinite linear;
-    -o-animation: move 50s infinite linear;
-    animation: move 50s infinite linear;
-}
 @keyframes move {
     0% {
         background-position: 20% 0;
@@ -62,6 +66,7 @@
         background-position: 70% 0;
     }
 }
+
 /* 动画时间 */
 .animation.duration-300 {
     animation-duration: 300ms !important;
@@ -83,4 +88,9 @@
 }
 .animation.duration-3000 {
     animation-duration: 3000ms !important;
+}
+
+/* 动画延迟 */
+.animation-delay-300 {
+    animation-delay: 300ms;
 }

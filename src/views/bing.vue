@@ -34,4 +34,13 @@
 </template>
 
 <style scoped src="@/assets/css/bing.css"></style>
+<style scoped src="@/assets/css/animation.css"></style>
 <script src="@/assets/js/bing.js"></script>
+//
+<script>
+// import { Vue } from 'vue';
+// import { App } from '@/assets/js/app.js';
+// console.log(App);
+
+//
+</script>
