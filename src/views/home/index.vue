@@ -27,6 +27,6 @@
     </div>
 </template>
 
-<style scoped src="@/assets/css/home.css"></style>
-<script scoped src="@/assets/js/home.js"></script>
+<style scoped src="./index.css"></style>
+<script scoped src="./index.js"></script>
 <style src="@/assets/css/animation.css"></style>

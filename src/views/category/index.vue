@@ -6,4 +6,4 @@
     </div>
 </template>
 
-<style scoped src="@/assets/css/category.css"></style>
+<style scoped src="./index.css"></style>
