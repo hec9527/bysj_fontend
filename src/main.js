@@ -1,26 +1,21 @@
 import Vue from 'vue';
-import App from './App';
+import App from './App.vue';
 import router from './router';
 import ElementUI from 'element-ui';
+import { store } from './store/index';
 import './registerServiceWorker';
 import 'element-ui/lib/theme-chalk/index.css';
 
-// 入口文件
-// 全局配置文件
-// 在此处引用的文件可以在全局使用
-
 Vue.use(ElementUI);
-
-Vue.config.productionTip = true;
+Vue.config.productionTip = false;
 
 new Vue({
     el: '#app',
-    data: {
-        theme: 'default'
-    },
-    mounted: function() {
-        console.log('Vm mounted');
-    },
+    store,
     router: router,
+    mounted: function() {
+        // console.log('Vm mounted');
+        // console.log('%c %o', 'color:red', store);
+    },
     render: h => h(App)
 });

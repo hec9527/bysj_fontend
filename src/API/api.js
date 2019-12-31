@@ -1,11 +1,11 @@
 import axios from 'axios';
-import store from '@/store/index.js';
+import store from '@/store/index';
 import baseURL from './baseURL';
 import { Message } from 'element-ui';
 const http = {};
 
 var instance = axios.create({
-    timeout: 5000,
+    timeout: 10000,
     baseURL,
     validateStatus(status) {
         switch (status) {
@@ -45,8 +45,8 @@ var instance = axios.create({
 instance.interceptors.request.use(
     function(config) {
         // 请求头添加token
-        if (store.state.UserToken) {
-            config.headers.Authorization = `Bearer ${store.state.UserToken}`;
+        if (store.state.userToken) {
+            config.headers.Authorization = store.state.userToken;
         }
         return config;
     },
@@ -58,7 +58,7 @@ instance.interceptors.request.use(
 // 响应拦截器即异常处理
 instance.interceptors.response.use(
     response => {
-        return response.data;
+        return response;
     },
     err => {
         if (err) {
@@ -69,21 +69,12 @@ instance.interceptors.response.use(
 );
 
 http.get = function(url, options) {
-    let loading;
-    if (!options || options.isShowLoading !== false) {
-        loading = document.getElementById('ajaxLoading');
-        loading.style.display = 'block';
-    }
     return new Promise((resolve, reject) => {
         instance
             .get(url, options)
             .then(response => {
-                if (!options || options.isShowLoading !== false) {
-                    loading = document.getElementById('ajaxLoading');
-                    loading.style.display = 'none';
-                }
-                if (response.code === 1) {
-                    resolve(response.data);
+                if (response.code === 0) {
+                    resolve(response);
                 } else {
                     Message.error({
                         message: response.msg
@@ -98,21 +89,12 @@ http.get = function(url, options) {
 };
 
 http.post = function(url, data, options) {
-    let loading;
-    if (!options || options.isShowLoading !== false) {
-        loading = document.getElementById('ajaxLoading');
-        loading.style.display = 'block';
-    }
     return new Promise((resolve, reject) => {
         instance
             .post(url, data, options)
             .then(response => {
-                if (!options || options.isShowLoading !== false) {
-                    loading = document.getElementById('ajaxLoading');
-                    loading.style.display = 'none';
-                }
-                if (response.code === 1) {
-                    resolve(response.data);
+                if (response.code === 0) {
+                    resolve(response);
                 } else {
                     Message.error({
                         message: response.msg
@@ -121,7 +103,7 @@ http.post = function(url, data, options) {
                 }
             })
             .catch(e => {
-                console.log(e);
+                console.error(e);
             });
     });
 };
