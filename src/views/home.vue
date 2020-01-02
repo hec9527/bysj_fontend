@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import store from '../store';
+
 export default {
     data: () => {
         return {
@@ -31,7 +33,8 @@ export default {
     },
     methods: {
         search: function() {
-            this.$store.commit('SEARCH_KEYWORDS', this.searchValue);
+            // this.$store.commit('SEARCH_KEYWORDS', this.searchValue);
+            store.dispatch('SEARCH_KEYWORDS', this.searchValue);
         }
     }
 };

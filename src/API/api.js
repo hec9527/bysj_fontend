@@ -1,12 +1,12 @@
 import axios from 'axios';
 import store from '@/store/index';
-import baseURL from './baseURL';
+import { baseUrl } from '../config/baseURL';
 import { Message } from 'element-ui';
 const http = {};
 
 var instance = axios.create({
     timeout: 10000,
-    baseURL,
+    baseUrl,
     validateStatus(status) {
         switch (status) {
             case 400:
@@ -83,7 +83,7 @@ http.get = function(url, options) {
                 }
             })
             .catch(e => {
-                console.log(e);
+                console.error(e);
             });
     });
 };

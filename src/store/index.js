@@ -4,7 +4,7 @@ import { get } from '../API/get';
 
 Vue.use(vuex);
 
-export const store = new vuex.Store({
+const store = new vuex.Store({
     state: {
         theme: 'default',
         userToken: undefined,
@@ -14,24 +14,18 @@ export const store = new vuex.Store({
     mutations: {
         SEARCH_KEYWORDS(state, keyworld) {
             state.keyworld = keyworld;
-            console.log(state);
         },
         LOGIN_OUT(state) {
             state.userToken = undefined;
         }
     },
     actions: {
-        SEARCH_KEYWORDS(context) {
-            console.log(context);
-
-            return new Promise(async (resolve, reject) => {
-                const res = await get.searchKeyWord();
-                if (res) {
-                    resolve(res);
-                } else {
-                    reject(res);
-                }
-            });
+        SEARCH_KEYWORDS({ commit }, keyworld) {
+            // commit('SEARCH_KEYWORDS', get.searchKeyWord(keyworld));
+            const res = get.searchKeyWord(keyworld);
+            commit('SEARCH_KEYWORDS', res);
         }
     }
 });
+
+export default store;
