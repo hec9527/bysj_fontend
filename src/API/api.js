@@ -7,6 +7,8 @@ const http = {};
 var instance = axios.create({
     timeout: 10000,
     baseUrl,
+    // 允许跨域发生cookie
+    withCredentials: true,
     validateStatus(status) {
         switch (status) {
             case 400:
@@ -48,6 +50,7 @@ instance.interceptors.request.use(
         if (store.state.userToken) {
             config.headers.Authorization = store.state.userToken;
         }
+
         return config;
     },
     function(error) {
@@ -58,7 +61,7 @@ instance.interceptors.request.use(
 // 响应拦截器即异常处理
 instance.interceptors.response.use(
     response => {
-        return response;
+        return response.data;
     },
     err => {
         if (err) {
@@ -97,7 +100,7 @@ http.post = function(url, data, options) {
                     resolve(response);
                 } else {
                     Message.error({
-                        message: response.msg
+                        message: response.code
                     });
                     reject(response.message);
                 }
