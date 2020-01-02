@@ -1,3 +1,1 @@
-const baseUrl = process.env.NODE_ENV === 'production' ? '/' : '/api';
-
-export default baseUrl;
+export const baseUrl = process.env.NODE_ENV === 'production' ? 'http://localhost:8008' : '/';

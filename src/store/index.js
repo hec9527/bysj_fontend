@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import vuex from 'vuex';
+import '../API/get';
+import '../API/post';
+import { get } from '../API/get';
 
 Vue.use(vuex);
 
@@ -11,8 +14,24 @@ export const store = new vuex.Store({
     },
 
     mutations: {
+        SEARCH_KEYWORDS(state, keyworld) {
+            state.keyworld = keyworld;
+            console.log(state);
+        },
         LOGIN_OUT(state) {
             state.userToken = undefined;
+        }
+    },
+    actions: {
+        SEARCH_KEYWORDS(context) {
+            return new Promise(async (resolve, reject) => {
+                const res = await get.searchKeyWord();
+                if (res) {
+                    resolve(res);
+                } else {
+                    reject(res);
+                }
+            });
         }
     }
 });
