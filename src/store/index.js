@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import vuex from 'vuex';
-import '../API/get';
-import '../API/post';
 import { get } from '../API/get';
 
 Vue.use(vuex);
@@ -24,6 +22,8 @@ export const store = new vuex.Store({
     },
     actions: {
         SEARCH_KEYWORDS(context) {
+            console.log(context);
+
             return new Promise(async (resolve, reject) => {
                 const res = await get.searchKeyWord();
                 if (res) {

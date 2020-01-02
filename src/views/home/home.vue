@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 .bg {
-    background: url('../assets/image/bg-home.jpg');
+    background: url('../../assets/image/bg-home.jpg');
     background-size: cover;
     position: absolute;
     top: -20px;
@@ -88,12 +88,12 @@ export default {
 .mask {
     width: 288px;
     height: 162px;
-    background-image: url('../assets/image/bg-home.jpg');
+    background-image: url('../../assets/image/bg-home.jpg');
     background-size: cover;
-    -webkit-mask: url('../assets/svg/home-dji.svg');
-    -moz-mask: url('../assets/svg/home-dji.svg');
-    -o-mask: url('../assets/svg/home-dji.svg');
-    mask: url('../assets/svg/home-dji.svg');
+    -webkit-mask: url('../../assets/svg/home-dji.svg');
+    -moz-mask: url('../../assets/svg/home-dji.svg');
+    -o-mask: url('../../assets/svg/home-dji.svg');
+    mask: url('../../assets/svg/home-dji.svg');
     -webkit-mask-size: cover;
     -moz-mask-size: cover;
     -o-mask-size: cover;

@@ -13,27 +13,27 @@ const routes = [
     {
         path: '/home',
         name: 'home',
-        component: () => import('@/views/home.vue')
+        component: () => import('@/views/home/home.vue')
     },
     {
         path: '/category',
         name: 'category',
-        component: () => import('@/views/category.vue')
+        component: () => import('@/views/category/category.vue')
     },
     {
         path: '/bing',
         name: 'bing',
-        component: () => import('@/views/bing.vue')
+        component: () => import('@/views/bing/bing.vue')
     },
     {
         path: '/daily',
         name: 'daily',
-        component: () => import('@/views/daily.vue')
+        component: () => import('@/views/daily/daily.vue')
     },
     {
         path: '/indi',
         name: 'individual',
-        component: () => import('@/views/individaul.vue')
+        component: () => import('@/views/individaul/individaul.vue')
     }
 ];
 
