@@ -7,7 +7,7 @@ import './registerServiceWorker';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
-Vue.config.productionTip = process.env.NODE_ENV === 'prodaction' ? true : false;
+Vue.config.productionTip = true;
 
 new Vue({
     el: '#app',
