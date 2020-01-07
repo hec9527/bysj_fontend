@@ -69,7 +69,6 @@ export default {
     font-size: 16px;
     height: inherit;
     padding: 7px 55px 7px 25px;
-    filter: blur(0);
     outline: none;
     border-radius: 25px;
     border: none;
@@ -93,13 +92,7 @@ export default {
     height: 162px;
     background-image: url('..//assets/image/bg-home.jpg');
     background-size: cover;
-    -webkit-mask: url('..//assets/svg/home-dji.svg');
-    -moz-mask: url('..//assets/svg/home-dji.svg');
-    -o-mask: url('..//assets/svg/home-dji.svg');
     mask: url('..//assets/svg/home-dji.svg');
-    -webkit-mask-size: cover;
-    -moz-mask-size: cover;
-    -o-mask-size: cover;
     mask-size: cover;
 }
 </style>
