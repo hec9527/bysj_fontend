@@ -12,7 +12,7 @@ import './assets/css/animation.css';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
-Vue.config.productionTip = true;
+Vue.config.productionTip = false;
 
 new Vue({
     el: '#app',
@@ -21,6 +21,9 @@ new Vue({
     mounted: function() {
         // console.log('Vm mounted');
         // console.log('%c %o', 'color:red', store);
+        // document.addEventListener('click', () => {
+        //     this.$message.error({ message: '测试' });
+        // });
     },
     render: h => h(App)
 });

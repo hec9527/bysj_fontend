@@ -3,87 +3,137 @@
         <!-- 右侧导航条 -->
         <div class="segements">
             <ul>
-                <li class="dot dot-this"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
-                <li class="dot"></li>
+                <li v-for="value in dailyPost" :key="value.date" class="dot"></li>
+                <!-- <li class="dot dot-this"></li> -->
             </ul>
         </div>
 
         <!-- 单页滚动  -- 整屏滚动 -->
-        <section class="section">
-            <footer class="footer">
-                并西法尼亚大学的教授
-            </footer>
-        </section>
-        <section>
-            <footer class="footer">
-                无语的我们
-            </footer>
-        </section>
+        <main class="section-cover">
+            <bing-section
+                v-for="(value, key) in dailyPost"
+                :key="key"
+                :bgsrc="value.bgurl"
+                :title="value.title"
+            ></bing-section>
+        </main>
 
         <!-- 加载动画 -->
-        <div class="loading"></div>
+        <!-- <el-loading></el-loading> -->
     </div>
 </template>
 
 <script>
-// JS
+import bingSection from '../component/Section';
+import API from '../API/API';
+// import { Message, Loading } from 'element-ui';
+
+export default {
+    data() {
+        return {
+            dailyPost: [
+                {
+                    bgurl:
+                        'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+                    title: '测试数据，这是测试数据',
+                    date: Math.random() * 999999999999
+                },
+                {
+                    bgurl:
+                        'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+                    title: '测试数据，这是测试数据',
+                    date: Math.random() * 999999999999
+                },
+                {
+                    bgurl:
+                        'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+                    title: '测试数据，这是测试数据',
+                    date: Math.random() * 999999999999
+                },
+                {
+                    bgurl:
+                        'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+                    title: '测试数据，这是测试数据',
+                    date: Math.random() * 999999999999
+                },
+                {
+                    bgurl:
+                        'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+                    title: '测试数据，这是测试数据',
+                    date: Math.random() * 999999999999
+                },
+                {
+                    bgurl:
+                        'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+                    title: '测试数据，这是测试数据',
+                    date: Math.random() * 999999999999
+                }
+            ]
+        };
+    },
+    methods: {
+        getDate() {
+            return new Date();
+        }
+    },
+    created() {
+        API.fetchDailyPost().then(() => {
+            // this.$message({
+            //     showClose: true,
+            //     message: '这是一条消息提示'
+            // });
+        });
+    },
+    components: {
+        bingSection
+        // elLoading: Loading
+    }
+};
 </script>
 
 <style scoped>
-.section {
+/* .section {
     width: 100vw;
     height: 100vh;
     position: relative;
     background-image: url(http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp);
     background-size: cover;
-}
+} */
 
 .segements {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 35px;
-    width: 10px;
-    height: auto;
-    min-height: 150px;
-    z-index: 2;
+    width: 8px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
 }
 
 .segements .dot {
     position: relative;
-    width: 10px;
-    height: 10px;
-    padding: 3px;
-    background: #fff;
-    box-shadow: 0 0 8px 2px #333;
+    width: 8px;
+    height: 8px;
+    background: #ffffff7a;
     border-radius: 100%;
     cursor: pointer;
-    margin-top: 100%;
+    margin-top: 120%;
 }
 
 .segements .dot.dot-this {
-    background: #333;
-    box-shadow: 0 0 8px 2px #fff;
+    background: #fff;
 }
 
-.section > .footer {
+.segements .dot:hover::after,
+.segements .dot.dot-this::after {
+    content: '';
     position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    text-align: left;
-    padding: 15px;
-    text-shadow: 0 0 5px #000000;
-    color: #fff;
+    top: -3px;
+    left: -3px;
+    width: 14px;
+    height: 14px;
+    background: #ffffff7a;
+    border-radius: 100%;
 }
 </style>
-
-<style scoped src="@/assets/css/animation.css"></style>
