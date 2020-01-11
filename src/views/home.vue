@@ -1,6 +1,5 @@
 <template>
     <div class="container flex-center">
-        <div class="bg"></div>
         <div class="cover animation fead-up">
             <div class="mask animation move"></div>
             <div class="search-box">
@@ -41,16 +40,8 @@ export default {
 </script>
 
 <style scoped>
-.bg {
-    background: url('..//assets/image/bg-home.jpg');
-    background-size: cover;
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    filter: blur(10px);
-    z-index: -1;
+.container {
+    backdrop-filter: blur(10px);
 }
 
 .search-box {
@@ -90,11 +81,9 @@ export default {
 .mask {
     width: 288px;
     height: 162px;
-    background-image: url('..//assets/image/bg-home.jpg');
+    background-image: url('../assets/image/bg-home.jpg');
     background-size: cover;
-    mask: url('..//assets/svg/home-dji.svg');
+    mask: url('../assets/svg/home-dji.svg');
     mask-size: cover;
 }
 </style>
-
-<style src="@/assets/css/animation.css"></style>
