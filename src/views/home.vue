@@ -1,21 +1,23 @@
 <template>
     <div class="container flex-center">
-        <div class="cover animation fead-up">
-            <div class="mask animation move"></div>
-            <div class="search-box">
+        <div class="search search-cover animation fead-up">
+            <div class="search search-mask animation move"></div>
+            <div class="search search-box">
                 <input
-                    class="search-input"
+                    class="search search-input"
                     type="text"
                     placeholder="分类/标签/用户名"
                     v-model.trim.lazy="searchValue"
                 />
-                <span class="search-btn" @click="search">
-                    <svg focusable="false" fill="#4285f4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                        ></path>
-                    </svg>
-                </span>
+                <div class="search-btn">
+                    <span @click="search">
+                        <svg focusable="false" fill="#4285f4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                            ></path>
+                        </svg>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -32,7 +34,6 @@ export default {
     },
     methods: {
         search: function() {
-            // this.$store.commit('SEARCH_KEYWORDS', this.searchValue);
             store.dispatch('SEARCH_KEYWORDS', this.searchValue);
         }
     }
@@ -44,25 +45,39 @@ export default {
     backdrop-filter: blur(10px);
 }
 
-.search-box {
-    width: 200%;
-    transform: translateX(-25%);
-    height: 50px;
-    margin-bottom: 250px;
-    margin-top: 15px;
+.search.search-cover {
+    width: 650px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search.search-mask {
+    width: 288px;
+    height: 162px;
+    background-image: url('../assets/image/bg-home.jpg');
+    background-size: cover;
+    mask: url('../assets/svg/home-dji.svg');
+    mask-size: cover;
+}
+
+.search.search-box {
+    margin-top: 55px;
+    width: 100%;
+    height: 56px;
     position: relative;
 }
 
-.search-input {
-    color: #000;
-    margin-top: 24px;
+.search.search-input {
     width: 100%;
-    font-size: 16px;
     height: inherit;
+    color: #000;
+    font-size: 18px;
+    letter-spacing: 0.1em;
     padding: 7px 55px 7px 25px;
-    outline: none;
     border-radius: 25px;
-    border: none;
 }
 
 .search-input:focus {
@@ -71,19 +86,12 @@ export default {
 
 .search-btn {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    right: 15px;
-    top: 34px;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    height: 24px;
+    right: 20px;
+    margin: auto;
     cursor: pointer;
-}
-
-.mask {
-    width: 288px;
-    height: 162px;
-    background-image: url('../assets/image/bg-home.jpg');
-    background-size: cover;
-    mask: url('../assets/svg/home-dji.svg');
-    mask-size: cover;
 }
 </style>

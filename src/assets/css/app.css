@@ -1,6 +1,8 @@
 * {
     padding: 0;
     margin: 0;
+    outline: none;
+    border: none;
     list-style: none;
     user-select: none;
     box-sizing: border-box;
