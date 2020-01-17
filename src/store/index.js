@@ -25,6 +25,7 @@ const store = new vuex.Store({
             state.userToken = undefined;
         }
     },
+
     actions: {
         SEARCH_KEYWORDS({ commit }, keyworld) {
             commit('SEARCH_KEYWORDS', keyworld, get.getSearchKeyWord(keyworld));

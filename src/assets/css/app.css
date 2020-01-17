@@ -31,33 +31,31 @@
 
 @media (min-width: 1024px) {
     #nav {
-        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
         position: absolute;
         top: 0;
-        right: 0;
-        left: 0;
         z-index: 10;
+        width: 100%;
         font-size: 14px;
         background: rgba(255, 255, 255, 0.3);
-        padding: 7px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.2s ease;
     }
 
     #nav:hover {
         background: #fff;
-        transition: all 0.2s ease;
+        transition: all 0.4s ease;
     }
 
     .nav-items {
-        margin: 0 7px 0 8px;
+        padding: 7px;
+        margin: 7 7px 7 8px;
         text-decoration: none;
         color: #000;
     }
 
     .nav-this,
-    .nav-items:hover,
-    .nav-this:hover {
+    .nav-items:hover {
         cursor: pointer;
         color: rgb(214, 134, 30);
     }

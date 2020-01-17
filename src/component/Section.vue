@@ -1,8 +1,6 @@
 <template>
     <section class="section" :style="{ background: bgsrc }">
-        <footer class="footer">
-            {{ title }}
-        </footer>
+        <footer class="footer">{{ title }} {{ time }}</footer>
     </section>
 </template>
 
@@ -16,6 +14,10 @@ export default {
         },
         title: {
             type: String,
+            required: true
+        },
+        time: {
+            type: Number,
             required: true
         }
     }

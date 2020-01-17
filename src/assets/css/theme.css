@@ -3,6 +3,7 @@
 .theme.theme-bg {
     background: url('../image/bg-home.jpg');
     background-size: cover;
+    background-attachment: fixed;
     position: absolute;
     top: 0;
     height: 100vh;
