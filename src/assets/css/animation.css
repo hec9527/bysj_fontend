@@ -12,16 +12,10 @@
 }
 
 .animation.move {
-    -webkit-animation: move 50s infinite linear;
-    -moz-animation: move 50s infinite linear;
-    -o-animation: move 50s infinite linear;
     animation: move 50s infinite linear;
 }
 
 .animation.slid-out-left {
-    -webkit-animation: slide-lfet 0.5s linear;
-    -moz-animation: slide-lfet 0.5s linear;
-    -o-animation: slide-lfet 0.5s linear;
     animation: slide-lfet 0.5s linear;
 }
 

@@ -46,6 +46,7 @@ export default {
 }
 
 .search.search-cover {
+    margin-top: -15%;
     width: 650px;
     height: 400px;
     display: flex;
