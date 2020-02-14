@@ -7,59 +7,56 @@ const API = {};
 API.getSearchKeyWord = keyworld => cnn.get(URL.SEARCH_KEYWORLD + keyworld);
 
 // 每日一图数据
-API.fetchDailyPost = function() {
+API.fetchDailyPost = () => {
     // return cnn.get(URL.BING_DAILY_POST);
 
     // ! TODO 临时测试数据
     return new Promise((res, rej) => {
         setTimeout(() => {
-            Math.random() > 0.99999
-                ? res([
-                      {
-                          bgurl:
-                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-                          title: '测试数据，这是测试数据',
-                          key: Math.random() * 999999999999,
-                          date: new Date()
-                      },
-                      {
-                          bgurl:
-                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-                          title: '测试数据，这是测试数据',
-                          key: Math.random() * 999999999999,
-                          date: new Date()
-                      },
-                      {
-                          bgurl:
-                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-                          title: '测试数据，这是测试数据',
-                          key: Math.random() * 999999999999,
-                          date: new Date()
-                      },
-                      {
-                          bgurl:
-                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-                          title: '测试数据，这是测试数据',
-                          key: Math.random() * 999999999999,
-                          date: new Date()
-                      },
-                      {
-                          bgurl:
-                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-                          title: '测试数据，这是测试数据',
-                          key: Math.random() * 999999999999,
-                          date: new Date()
-                      },
-                      {
-                          bgurl:
-                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-                          title: '测试数据，这是测试数据',
-                          key: Math.random() * 999999999999,
-                          date: new Date()
-                      }
-                  ])
+            Math.random() > 0.1
+                ? res(
+                      (() => {
+                          const arr = [];
+                          for (let i = 0; i < 10; i++) {
+                              arr.push({
+                                  bgurl:
+                                      'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+                                  title: '测试数据，这是测试数据',
+                                  key: Math.random() * 999999999999,
+                                  date: new Date()
+                              });
+                          }
+                          return arr;
+                      })()
+                  )
                 : rej({ message: '请求数据错误' });
-        }, 1000);
+        }, 200);
+    });
+};
+
+API.fetchDailyEnglish = () => {
+    // return cnn
+
+    // ! TODO 测试  临时数据
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            Math.random() > 0.1
+                ? res({
+                      code: 0,
+                      message: 'ok',
+                      data: {
+                          title: 'taday english',
+                          content: 'this is a day ,never so beautiful',
+                          date: new Date(),
+                          url:
+                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp'
+                      }
+                  })
+                : rej({
+                      code: 1,
+                      message: 'error'
+                  });
+        }, 100);
     });
 };
 
