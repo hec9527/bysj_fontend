@@ -1,10 +1,13 @@
 <template>
     <div class="container">
-        <el-carousel height="100vh" direction="vertical" :autoplay="true" trigger="click">
+        <!-- banner -->
+        <el-carousel height="100vh" direction="vertical" :autoplay="true" trigger="click" :close-on-click-modal="false">
             <el-carousel-item v-for="item in data" :key="item.key" :style="{ background: `url(${item.bgurl})` }">
-                <div class="carousel-title glass">{{ item.title }}</div>
+                <div class="carousel-title glass glass-black">{{ item.title }}</div>
             </el-carousel-item>
         </el-carousel>
+
+        <!-- dialog -->
         <el-dialog title="提示" :visible.sync="dialog" width="30%" center :show-close="false">
             <span class="content">数据获取出错，是否重新获取？</span>
             <span slot="footer" class="dialog-footer">
@@ -12,7 +15,9 @@
                 <el-button type="primary" @click="dialog = false || fetchDailyData()">确 定</el-button>
             </span>
         </el-dialog>
-        <div class="bg glass"></div>
+
+        <!-- bg -->
+        <div class="bg glass-black"></div>
     </div>
 </template>
 
@@ -60,26 +65,12 @@ export default {
 }
 
 .carousel-title {
+    position: absolute;
     bottom: 0;
     width: 100%;
     height: auto;
     text-align: left;
     padding: 15px 35px 15px 15px;
     color: #fff;
-}
-
-.glass {
-    position: absolute;
-    backdrop-filter: blur(3px);
-}
-.glass::after {
-    content: '';
-    position: absolute;
-    z-index: -2;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: #0001;
 }
 </style>
