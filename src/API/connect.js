@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from '@/store/index';
+import store from '@/store/store';
 import { baseUrl } from '../config/baseURL';
 import { Message } from 'element-ui';
 
@@ -17,43 +17,23 @@ const instance = axios.create({
     validateStatus(status) {
         switch (status) {
             case 400:
-                Message({
-                    showClose: true,
-                    type: 'error',
-                    message: '请求出错'
-                });
+                Message.error('请求出错');
                 break;
             case 401:
-                Message({
-                    showClose: true,
-                    type: 'warning',
-                    message: '授权失败，请重新登录'
-                });
-                store.commit('LOGIN_OUT');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                Message.warning('授权失败，请重新登录');
+                // store.commit('LOGIN_OUT');
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 1000);
                 return;
             case 403:
-                Message({
-                    showClose: true,
-                    type: 'warning',
-                    message: '拒绝访问'
-                });
+                Message.error('拒绝访问');
                 break;
             case 404:
-                Message({
-                    showClose: true,
-                    type: 'warning',
-                    message: '请求错误,未找到该资源'
-                });
+                Message.error('请求资源未找到');
                 break;
             case 500:
-                Message({
-                    showClose: true,
-                    type: 'warning',
-                    message: '服务端错误'
-                });
+                Message.error('服务器错误');
                 break;
         }
         return status >= 200 && status < 300;
@@ -64,8 +44,8 @@ const instance = axios.create({
 instance.interceptors.request.use(
     config => {
         // 请求头添加token
-        if (store.state.userToken) {
-            config.headers.Authorization = store.state.userToken;
+        if (store.state.userInfo.userToken) {
+            config.headers.Authorization = store.state.userInfo.userToken;
         }
         // console.log('发起请求，config：', config);
         return config;
@@ -75,35 +55,36 @@ instance.interceptors.request.use(
     }
 );
 
-// 响应拦截器即异常处理
+// 响应拦截器  异常处理+http请求剥离
 instance.interceptors.response.use(
-    res => res.data,
-    err => {
-        Message({
-            showClose: true,
-            type: 'error',
-            message: '服务器链接失败'
-        });
-        return Promise.reject(err.response);
+    res => {
+        if (res.status === 200) {
+            return res.data;
+        } else {
+            Message.warning(res.statusText);
+            return res.data;
+        }
+    },
+    error => {
+        Message.error('服务器返回数据异常');
+        console.error('Error:', error);
+        return Promise.reject(error);
     }
 );
 
+// 所有请求最终返回数据，不包含描述信息
 http.get = function(url, options) {
     return new Promise((resolve, reject) => {
         instance.get(url, options).then(
             res => {
                 if (res.code === 0) {
-                    resolve(res);
+                    resolve(res.data);
                 } else {
-                    Message({
-                        showClose: true,
-                        type: 'error',
-                        message: res.msg
-                    });
-                    reject(res.msg);
+                    Message.error(res.msg);
+                    reject(res);
                 }
             },
-            error => console.error('Error: ', error || '服务器请求错误')
+            res => reject(res)
         );
     });
 };
@@ -113,17 +94,14 @@ http.post = function(url, data, options) {
         instance.post(url, data, options).then(
             res => {
                 if (res.code === 0) {
-                    resolve(res);
+                    Message.success('ok');
+                    resolve(res.data);
                 } else {
-                    Message({
-                        showClose: true,
-                        type: 'error',
-                        message: res.code
-                    });
-                    reject(res.message);
+                    Message.error(res.msg);
+                    reject(res);
                 }
             },
-            error => console.error('Error: ', error || '服务器请求错误')
+            res => reject(res)
         );
     });
 };

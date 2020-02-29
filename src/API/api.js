@@ -4,13 +4,12 @@ import URL from './urls';
 const API = {};
 
 // 首页查询关键字
-API.getSearchKeyWord = keyworld => cnn.get(URL.SEARCH_KEYWORLD + keyworld);
+API.fetchKeyWorkds = keyworld => {
+    return cnn.get(URL.SEARCH_KEYWORLD + keyworld);
+};
 
 // 每日一图数据
 API.fetchDailyPost = () => {
-    // return cnn.get(URL.BING_DAILY_POST);
-
-    // ! TODO 临时测试数据
     return new Promise((res, rej) => {
         setTimeout(() => {
             Math.random() > 0.1
@@ -32,11 +31,12 @@ API.fetchDailyPost = () => {
                 : rej({ message: '请求数据错误' });
         }, 200);
     });
+    // return cnn.get(URL.BING_DAILY_POST);
 };
 
+// 获取每日英语数据
 API.fetchDailyEnglish = () => {
-    // return cnn
-
+    // return cnn.get(URL.ENGLIST_DAILY_POST)
     // ! TODO 测试  临时数据
     return new Promise((res, rej) => {
         setTimeout(() => {
@@ -59,5 +59,8 @@ API.fetchDailyEnglish = () => {
         }, 100);
     });
 };
+
+// 获取所有分类
+API.fetchAllCategory = () => {};
 
 export default API;

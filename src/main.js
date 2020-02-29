@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import ElementUI from 'element-ui';
-import store from './store/index';
+import store from './store/store';
 import './registerServiceWorker';
 
 // 引入全局样式
@@ -12,18 +12,11 @@ import './assets/css/animation.css';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 new Vue({
     el: '#app',
     store,
-    router: router,
-    mounted: function() {
-        // console.log('Vm mounted');
-        // console.log('%c %o', 'color:red', store);
-        // document.addEventListener('click', () => {
-        //     this.$message.error({ message: '测试' });
-        // });
-    },
+    router,
     render: h => h(App)
 });

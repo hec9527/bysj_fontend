@@ -17,7 +17,15 @@ export default {
         UserLogin: Login
     },
     methods: {
-        //
+        getUserInfo() {
+            //
+        }
     }
 };
 </script>
+
+<style scoped>
+.container {
+    background: #e0e3da;
+}
+</style>

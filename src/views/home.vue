@@ -8,6 +8,7 @@
                     type="text"
                     placeholder="分类/标签/用户名"
                     v-model.trim.lazy="searchValue"
+                    @keydown.enter="search"
                 />
                 <div class="search-btn">
                     <span @click="search">
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-import store from '../store';
+import API from '../API/API';
 
 export default {
     data: () => {
@@ -33,8 +34,11 @@ export default {
         };
     },
     methods: {
-        search: function() {
-            store.dispatch('SEARCH_KEYWORDS', this.searchValue);
+        search() {
+            API.fetchKeyWorkds(this.searchValue).then(res => {
+                this.$store.commit('UPDATE_SEARCH_RESULT', { keywords: this.searchValue, data: res });
+                window.location.hash = "/category?type='search'";
+            });
         }
     }
 };
@@ -76,6 +80,7 @@ export default {
     height: inherit;
     color: #000;
     font-size: 18px;
+    font-weight: 400;
     letter-spacing: 0.1em;
     padding: 7px 55px 7px 25px;
     border-radius: 25px;
