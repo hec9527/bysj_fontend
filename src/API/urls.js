@@ -8,7 +8,7 @@ URL.parmas = window.location.search;
 
 // ----------    网络请求路径      ----------
 // 关键字搜索
-URL.SEARCH_KEYWORLD = baseUrl + '/a/get/list/keyworld?kw=';
+URL.SEARCH_KEYWORLD = baseUrl + '/a/get/home/keyworld';
 
 // bing每日数据
 URL.BING_DAILY_POST = baseUrl + '/a/get/list/bingDaily';

@@ -4,23 +4,34 @@ import URL from './urls';
 const API = {};
 
 // 首页查询关键字
-API.fetchKeyWorkds = keyworld => {
-    return cnn.get(URL.SEARCH_KEYWORLD + keyworld);
+API.fetchKeyWorkds = opt => {
+    let url = URL.SEARCH_KEYWORLD + '?';
+    Object.keys(opt).forEach(key => {
+        url += `${key}=${opt[key]}&`;
+    });
+    return cnn.get(url);
 };
 
-// 每日一图数据
+// bing每日一图数据
 API.fetchDailyPost = () => {
     return new Promise((res, rej) => {
         setTimeout(() => {
             Math.random() > 0.1
                 ? res(
                       (() => {
+                          const images = [
+                              'http://h1.ioliu.cn/bing/QuebecWinter_ZH-CN1626582820_1920x1080.jpg',
+                              'http://h1.ioliu.cn/bing/MalhamStars_ZH-CN4163177154_1920x1080.jpg',
+                              'http://h1.ioliu.cn/bing/AcadiaSunrise_ZH-CN5619713848_1920x1080.jpg',
+                              'http://h1.ioliu.cn/bing/MundoFalls_ROW9309097946_1920x1080.jpg',
+                              'http://h1.ioliu.cn/bing/OtterCreekVT_ZH-CN0564511657_1920x1080.jpg',
+                              'http://h1.ioliu.cn/bing/SeussianLandscape_ZH-CN0785428057_1920x1080.jpg'
+                          ];
                           const arr = [];
-                          for (let i = 0; i < 10; i++) {
+                          for (let i = 0; i < images.length; i++) {
                               arr.push({
-                                  bgurl:
-                                      'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-                                  title: '测试数据，这是测试数据',
+                                  bgurl: images[i],
+                                  title: '【测试数据】特约记者@Steve',
                                   key: Math.random() * 999999999999,
                                   date: new Date()
                               });

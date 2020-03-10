@@ -9,8 +9,11 @@ export default new vuex.Store({
             userToken: undefined
         },
         search: {
-            keyWords: '',
-            data: []
+            total: 0, // 总共
+            count: 0, // 偏移
+            page: 30, // 分页
+            kw: '', // 查询关键字
+            data: [] // 数据
         }
     },
 
@@ -21,6 +24,13 @@ export default new vuex.Store({
     mutations: {
         UPDATE_SEARCH_RESULT(state, payload) {
             state.search = payload;
+        }
+    },
+
+    // 相当于 computed 响应式更新
+    getters: {
+        getSearchInfo(state) {
+            return state.search;
         }
     }
 });

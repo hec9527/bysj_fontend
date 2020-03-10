@@ -78,7 +78,7 @@ http.get = function(url, options) {
         instance.get(url, options).then(
             res => {
                 if (res.code === 0) {
-                    resolve(res.data);
+                    resolve(res);
                 } else {
                     Message.error(res.msg);
                     reject(res);

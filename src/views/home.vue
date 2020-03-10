@@ -35,9 +35,14 @@ export default {
     },
     methods: {
         search() {
-            API.fetchKeyWorkds(this.searchValue).then(res => {
-                this.$store.commit('UPDATE_SEARCH_RESULT', { keywords: this.searchValue, data: res });
-                window.location.hash = "/category?type='search'";
+            API.fetchKeyWorkds({ kw: this.searchValue }).then(res => {
+                this.$store.commit('UPDATE_SEARCH_RESULT', {
+                    kw: this.searchValue,
+                    data: res.data,
+                    total: res.total,
+                    count: res.len
+                });
+                window.location.hash = '/search';
             });
         }
     }
