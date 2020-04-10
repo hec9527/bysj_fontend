@@ -16,4 +16,7 @@ URL.BING_DAILY_POST = baseUrl + '/a/get/list/bingDaily';
 // 每日英语数据
 URL.ENGLIST_DAILY_POST = baseUrl + '/a/get/list/englishDaily';
 
+// 请求转发
+URL.FORWRAD_REQUEST = baseUrl + '/a/get/forward';
+
 export default URL;

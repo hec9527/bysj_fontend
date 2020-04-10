@@ -11,6 +11,11 @@ const routes = [
         redirect: '/home'
     },
     {
+        path: '/',
+        name: 'test',
+        component: () => import('@/component/card-img.vue')
+    },
+    {
         path: '/home',
         name: 'home',
         component: () => import('@/views/home.vue')

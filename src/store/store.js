@@ -8,12 +8,12 @@ export default new vuex.Store({
         userInfo: {
             userToken: undefined
         },
-        search: {
+        searchInfo: {
             total: 0, // 总共
             count: 0, // 偏移
-            page: 30, // 分页
             kw: '', // 查询关键字
-            data: [] // 数据
+            data: [], // 数据
+            len: 30 // 分页大小30
         }
     },
 
@@ -23,14 +23,20 @@ export default new vuex.Store({
     // vuex中用于修改state 的方式
     mutations: {
         UPDATE_SEARCH_RESULT(state, payload) {
-            state.search = payload;
+            state.searchInfo = {
+                kw: payload.kw,
+                total: payload.total,
+                count: payload.count,
+                data: state.searchInfo.data.concat(payload.data),
+                len: state.searchInfo.len
+            };
         }
     },
 
     // 相当于 computed 响应式更新
     getters: {
         getSearchInfo(state) {
-            return state.search;
+            return state.searchInfo;
         }
     }
 });

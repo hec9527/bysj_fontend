@@ -74,4 +74,9 @@ API.fetchDailyEnglish = () => {
 // 获取所有分类
 API.fetchAllCategory = () => {};
 
+// 转发
+API.forwardRequest = url => {
+    return cnn.get(URL.FORWRAD_REQUEST + `?url=${url}`);
+};
+
 export default API;

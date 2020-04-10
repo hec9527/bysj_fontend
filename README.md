@@ -36,3 +36,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - 2019-12-5
   - 从本地仓库转移到 github 仓库
+
+- 2020-03-19
+  - 改为优先使用[蓝调](http://www.lcoc.top/)的壁纸链接
