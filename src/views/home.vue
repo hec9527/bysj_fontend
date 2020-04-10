@@ -7,7 +7,7 @@
                     class="search search-input"
                     type="text"
                     placeholder="分类/标签/用户名"
-                    v-model.trim.lazy="searchValue"
+                    v-model.trim="searchValue"
                     @keydown.enter="search"
                 />
                 <div class="search-btn">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import API from '../API/API';
+import { mapMutations } from 'vuex';
 
 export default {
     data: () => {
@@ -35,16 +35,10 @@ export default {
     },
     methods: {
         search() {
-            API.fetchKeyWorkds({ kw: this.searchValue }).then(res => {
-                this.$store.commit('UPDATE_SEARCH_RESULT', {
-                    kw: this.searchValue,
-                    data: res.data,
-                    total: res.total,
-                    count: res.len
-                });
-                window.location.hash = '/search';
-            });
-        }
+            this.$store.commit('UPDATE_SEARCH_INFO', this.searchValue);
+            window.location.hash = '/search';
+        },
+        ...mapMutations(['UPDATE_SEARCH_INFO'])
     }
 };
 </script>
