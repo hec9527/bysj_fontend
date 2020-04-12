@@ -25,6 +25,9 @@ URL.IMAGES_TYPE_INFO = baseUrl + '/a/get/getImageCategory';
 // 获取指定分类的图片
 URL.IMAGE_TYPE_DATA = baseUrl + '/a/get/getImageByCategory';
 
+// 加载出错的图片
+URL.IMAGES_LOAD_ERROR = baseUrl + '/a/get/imageLoadError';
+
 // 百度图片下载API
 URL.BAIDU_IMAGE_DOWNLOADER = 'http://image.baidu.com/search/down?tn=download&word=download&ie=utf8&fr=detail&url=';
 

@@ -21,6 +21,13 @@ API.fetchCategoryImage = opt => {
     return cnn.get(url);
 };
 
+// TODO 处理图片加载出错的问题
+// 处理图片加载出错的问题
+API.feedImageLoadError = opt => {
+    const url = parmasConcat(URL.IMAGES_LOAD_ERROR, opt);
+    return cnn.get(url);
+};
+
 // bing每日一图数据
 API.fetchDailyPost = () => {
     return new Promise((res, rej) => {

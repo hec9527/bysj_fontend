@@ -1,3 +1,5 @@
+import URL from '../API/urls';
+
 /**
  *  处理图片的地址，为每一个图片添加一个cover地址
  * @param {Array} data
@@ -27,4 +29,21 @@ export function parmasConcat(url, option) {
         str += `${item}=${option[item]}&`;
     });
     return url + '?' + str.slice(0, -1);
+}
+
+/**
+ *
+ * @param {String} str
+ */
+export function downloadImage(url) {
+    const el = document.createElement('a');
+    const lis = url.split('/');
+    if (el.download) {
+        el.download = lis[lis.length - 1];
+        el.href = url;
+    } else {
+        el.download = lis[lis.length - 1];
+        el.href = URL.BAIDU_IMAGE_DOWNLOADER + url;
+    }
+    el.click();
 }

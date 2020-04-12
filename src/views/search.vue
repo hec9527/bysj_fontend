@@ -15,6 +15,7 @@
             :loadingTimeOut="300"
             @scrollReachBottom="loadMore"
             @click="clickImage"
+            @imgError="imageLoadError"
         >
             <div slot="waterfall-over" :style="{ color: '#fff' }">我也是有底线的....</div>
         </water-fall>
@@ -48,9 +49,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import API from '../API/API';
-import URL from '../API/urls';
 import vueWaterfallEasy from 'vue-waterfall-easy';
-import { mapImageUrl } from '../tools/util';
+import { mapImageUrl, downloadImage } from '../tools/util';
 import { Notification, Backtop } from 'element-ui';
 
 export default {
@@ -124,17 +124,7 @@ export default {
         },
         downloadImage(e, str) {
             window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
-            const el = document.createElement('a');
-            const url = this.imageInfo[str];
-            const lis = url.split('/');
-            if (el.download) {
-                el.download = lis[lis.length - 1];
-                el.href = url;
-            } else {
-                el.download = lis[lis.length - 1];
-                el.href = URL.BAIDU_IMAGE_DOWNLOADER + url;
-            }
-            el.click();
+            downloadImage(this.imageInfo[str]);
         },
         loadMore() {
             this.fetchData();
