@@ -50,10 +50,12 @@ export default {
     },
     methods: {
         handleCategoryChange(item) {
-            this.$store.commit('UPDATE_CATEGORY_INFO', item);
+            if (this.getCurrentCategory() !== item) {
+                this.$store.commit('UPDATE_CATEGORY_INFO', item);
+            }
             window.location.hash = '/category';
         },
-        ...mapGetters(['getAllCategory'])
+        ...mapGetters(['getAllCategory', 'getCurrentCategory'])
     },
     components: {
         elPopover: Popover
