@@ -169,15 +169,15 @@ export default {
     overflow: hidden;
     top: 0;
     left: 0;
-    display: none;
     height: 100vh;
     width: 100vw;
-    animation: fade-out 275ms linear forwards;
+    display: none;
+    transition: all 275ms linear;
 }
 .imageDownload.show {
     z-index: 10;
     display: block;
-    animation: fade-in 275ms linear forwards;
+    animation: fade-in 300ms linear forwards;
 }
 
 .imageDownload.show > .operate {
@@ -232,37 +232,15 @@ export default {
     line-height: 40px;
     color: #1989fa;
 }
-@keyframes fade-in {
-    0% {
-        display: none;
-        top: 50px;
-        opacity: 0.3;
-    }
-    1% {
-        display: block;
-        top: 50px;
-        opacity: 0.3;
-    }
-    100% {
-        display: block;
-        top: 0;
-        opacity: 1;
-    }
-}
 
-@keyframes fade-out {
-    0% {
-        top: 0;
+@keyframes fade-in {
+    from {
+        transform: translateY(50px);
+        opacity: 0.6;
+    }
+    fo {
+        transform: translateY(0);
         opacity: 1;
-        display: block;
-    }
-    99% {
-        top: 50px;
-        opacity: 0.3;
-        display: block;
-    }
-    100% {
-        display: none;
     }
 }
 </style>
