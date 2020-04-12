@@ -167,29 +167,17 @@ export default {
     background-position: center !important;
     background-repeat: no-repeat;
     overflow: hidden;
-    top: 50%;
-    left: 0;
-    height: 0;
-    opacity: 0.3;
-    width: 100vw;
-    transition: all 275ms linear;
-}
-.imageDownload::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #abf9;
-    backdrop-filter: blur(10px);
     top: 0;
     left: 0;
-    z-index: -1;
-}
-.show {
-    opacity: 1;
-    top: 0;
+    display: none;
     height: 100vh;
-    transition: all 275ms ease-out;
+    width: 100vw;
+    animation: fade-out 275ms linear forwards;
+}
+.imageDownload.show {
+    z-index: 10;
+    display: block;
+    animation: fade-in 275ms linear forwards;
 }
 
 .imageDownload.show > .operate {
@@ -243,5 +231,38 @@ export default {
     text-align: center;
     line-height: 40px;
     color: #1989fa;
+}
+@keyframes fade-in {
+    0% {
+        display: none;
+        top: 50px;
+        opacity: 0.3;
+    }
+    1% {
+        display: block;
+        top: 50px;
+        opacity: 0.3;
+    }
+    100% {
+        display: block;
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        top: 0;
+        opacity: 1;
+        display: block;
+    }
+    99% {
+        top: 50px;
+        opacity: 0.3;
+        display: block;
+    }
+    100% {
+        display: none;
+    }
 }
 </style>
