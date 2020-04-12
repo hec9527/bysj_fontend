@@ -13,13 +13,20 @@
 </template>
 
 <script>
-// import store from './store/index';
+import store from './store/store';
+import API from './API/API';
 
 export default {
     data() {
         return {
             themeBackground: 'theme-bg'
         };
+    },
+    mounted() {
+        console.log('App mounted');
+        API.fetchAllCategory().then(res => {
+            this.$store.commit('UPDATE_ALL_CATEGORY', res.data);
+        });
     }
 };
 </script>

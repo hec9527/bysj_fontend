@@ -27,6 +27,8 @@
 <script>
 import { mapMutations } from 'vuex';
 
+// TODO 增加右侧消息显示框，自定义提示框提示内容样式时价等
+
 export default {
     data: () => {
         return {

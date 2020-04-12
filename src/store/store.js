@@ -14,7 +14,8 @@ export default new vuex.Store({
             kw: '', // 查询关键字
             data: [], // 数据
             len: 30 // 分页大小30
-        }
+        },
+        allCategory: [] // 图片的分类信息
     },
 
     // 异步操作使用action，异步结束在action中调用commit执行mutation
@@ -22,6 +23,9 @@ export default new vuex.Store({
 
     // vuex中用于修改state 的方式
     mutations: {
+        UPDATE_ALL_CATEGORY(state, payload) {
+            state.allCategory = payload;
+        },
         UPDATE_SEARCH_RESULT(state, payload) {
             state.searchInfo = {
                 kw: payload.kw,

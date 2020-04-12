@@ -19,4 +19,7 @@ URL.ENGLIST_DAILY_POST = baseUrl + '/a/get/list/englishDaily';
 // 请求转发
 URL.FORWRAD_REQUEST = baseUrl + '/a/get/forward';
 
+// 图片的分类信息
+URL.IMAGES_TYPE_INFO = baseUrl + '/a/get/getImageCategory';
+
 export default URL;

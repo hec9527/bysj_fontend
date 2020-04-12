@@ -6,6 +6,7 @@
             :gap="5"
             :maxCols="5"
             :imgWidth="450"
+            class="waterfall"
             srcKey="cover"
             ref="waterfall"
             linkRange="card"
@@ -34,6 +35,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- 回到顶部 -->
+        <el-backtop target=".container" :bottom="100">
+            <div class="backTop">
+                UP
+            </div>
+        </el-backtop>
     </div>
 </template>
 
@@ -42,7 +50,7 @@ import { mapGetters, mapMutations } from 'vuex';
 import API from '../API/API';
 import vueWaterfallEasy from 'vue-waterfall-easy';
 import { mapImageUrl } from '../tools/util';
-import { Message } from 'element-ui';
+import { Message, Backtop } from 'element-ui';
 
 export default {
     data() {
@@ -128,7 +136,8 @@ export default {
         ...mapMutations(['UPDATE_SEARCH_RESULT'])
     },
     components: {
-        waterFall: vueWaterfallEasy
+        waterFall: vueWaterfallEasy,
+        elBacktop: Backtop
     }
 };
 </script>
@@ -218,5 +227,15 @@ export default {
 .download-link > div {
     margin-left: 15px;
     cursor: pointer;
+}
+
+.backTop {
+    height: 100%;
+    width: 100%;
+    background-color: #f2f5f6;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    line-height: 40px;
+    color: #1989fa;
 }
 </style>

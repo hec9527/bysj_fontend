@@ -12,6 +12,11 @@ API.fetchKeyWorkds = opt => {
     return cnn.get(url);
 };
 
+// 查询图片分类信息
+API.fetchAllCategory = () => {
+    return cnn.get(URL.IMAGES_TYPE_INFO);
+};
+
 // bing每日一图数据
 API.fetchDailyPost = () => {
     return new Promise((res, rej) => {
@@ -70,9 +75,6 @@ API.fetchDailyEnglish = () => {
         }, 100);
     });
 };
-
-// 获取所有分类
-API.fetchAllCategory = () => {};
 
 // 转发
 API.forwardRequest = url => {
