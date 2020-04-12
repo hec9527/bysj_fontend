@@ -22,4 +22,10 @@ URL.FORWRAD_REQUEST = baseUrl + '/a/get/forward';
 // 图片的分类信息
 URL.IMAGES_TYPE_INFO = baseUrl + '/a/get/getImageCategory';
 
+// 获取指定分类的图片
+URL.IMAGE_TYPE_DATA = baseUrl + '/a/get/getImageByCategory';
+
+// 百度图片下载API
+URL.BAIDU_IMAGE_DOWNLOADER = 'http://image.baidu.com/search/down?tn=download&word=download&ie=utf8&fr=detail&url=';
+
 export default URL;

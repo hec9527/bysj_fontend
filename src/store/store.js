@@ -15,6 +15,13 @@ export default new vuex.Store({
             data: [], // 数据
             len: 30 // 分页大小30
         },
+        categoryInfo: {
+            total: 0, // 总共数量
+            count: 0, // 偏移量
+            category: '', // 分类名称
+            data: [], // 数据源
+            len: 30 // 分页大小
+        },
         allCategory: [] // 图片的分类信息
     },
 
@@ -23,16 +30,37 @@ export default new vuex.Store({
 
     // vuex中用于修改state 的方式
     mutations: {
+        // 更新所有图片分类
         UPDATE_ALL_CATEGORY(state, payload) {
             state.allCategory = payload;
         },
+        // 分类页面
+        UPDATE_CATEGORY_RESULT(state, payload) {
+            state.categoryInfo = {
+                total: payload.total,
+                count: payload.count,
+                category: payload.category,
+                data: state.categoryInfo.data.concat(payload.data),
+                len: state.categoryInfo.len
+            };
+        },
+        UPDATE_CATEGORY_INFO(state, payload) {
+            state.categoryInfo = {
+                total: 0, // 总共数量
+                count: 0, // 偏移量
+                category: payload, // 分类名称
+                data: [], // 数据源
+                len: 30 // 分页大小
+            };
+        },
+        // 首页查询
         UPDATE_SEARCH_RESULT(state, payload) {
             state.searchInfo = {
                 kw: payload.kw,
                 total: payload.total,
                 count: payload.count,
                 data: state.searchInfo.data.concat(payload.data),
-                len: state.searchInfo.len
+                len: payload.len
             };
         },
         UPDATE_SEARCH_INFO(state, payload) {
@@ -50,6 +78,15 @@ export default new vuex.Store({
     getters: {
         getSearchInfo(state) {
             return state.searchInfo;
+        },
+        getAllCategory(state) {
+            return state.allCategory;
+        },
+        getCategoryInfo(state) {
+            return state.categoryInfo;
+        },
+        getCurrentCategory(state) {
+            return state.categoryInfo.category;
         }
     }
 });

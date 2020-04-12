@@ -1,20 +1,24 @@
 import cnn from './connect';
 import URL from './urls';
+import { parmasConcat } from '../tools/util';
 
 const API = {};
 
 // 首页查询关键字
 API.fetchKeyWorkds = opt => {
-    let url = URL.SEARCH_KEYWORLD + '?';
-    Object.keys(opt).forEach(key => {
-        url += `${key}=${opt[key]}&`;
-    });
+    const url = parmasConcat(URL.SEARCH_KEYWORLD, opt);
     return cnn.get(url);
 };
 
 // 查询图片分类信息
 API.fetchAllCategory = () => {
     return cnn.get(URL.IMAGES_TYPE_INFO);
+};
+
+// 查询指定分类的图片信息
+API.fetchCategoryImage = opt => {
+    const url = parmasConcat(URL.IMAGE_TYPE_DATA, opt);
+    return cnn.get(url);
 };
 
 // bing每日一图数据

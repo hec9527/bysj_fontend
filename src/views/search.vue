@@ -16,7 +16,7 @@
             @scrollReachBottom="loadMore"
             @click="clickImage"
         >
-            <div slot="waterfall-over">我也是有底线的....</div>
+            <div slot="waterfall-over" :style="{ color: '#fff' }">我也是有底线的....</div>
         </water-fall>
 
         <!-- 图片弹窗组件 -->
@@ -48,9 +48,10 @@
 <script>
 import { mapGetters } from 'vuex';
 import API from '../API/API';
+import URL from '../API/urls';
 import vueWaterfallEasy from 'vue-waterfall-easy';
 import { mapImageUrl } from '../tools/util';
-import { Message, Backtop } from 'element-ui';
+import { Notification, Backtop } from 'element-ui';
 
 export default {
     data() {
@@ -87,7 +88,13 @@ export default {
                 this.$store.commit('UPDATE_SEARCH_RESULT', data);
                 if (res.len === 0) {
                     if (searchInfo.data.length === 0) {
-                        return Message.warning('找不到数据换一个关键词试试看吧');
+                        Notification({
+                            title: '错误',
+                            type: 'error',
+                            position: 'top-right',
+                            message: '找不到相关数据条目，换一个关键词试试'
+                        });
+                        return (window.location.hash = '/home');
                     }
                     this.$refs.waterfall.waterfallOver();
                 }
@@ -125,7 +132,7 @@ export default {
                 el.href = url;
             } else {
                 el.download = lis[lis.length - 1];
-                el.href = 'http://image.baidu.com/search/down?tn=download&word=download&ie=utf8&fr=detail&url=' + url;
+                el.href = URL.BAIDU_IMAGE_DOWNLOADER + url;
             }
             el.click();
         },

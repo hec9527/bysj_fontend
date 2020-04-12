@@ -14,3 +14,17 @@ export function mapImageUrl(data) {
         return item;
     });
 }
+
+/**
+ * 将对象属性拼接成字符串
+ * @param { String } url
+ * @param { Object } option
+ * @returns {String}
+ */
+export function parmasConcat(url, option) {
+    let str = '';
+    Object.keys(option).forEach(item => {
+        str += `${item}=${option[item]}&`;
+    });
+    return url + '?' + str.slice(0, -1);
+}
