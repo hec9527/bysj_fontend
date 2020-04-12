@@ -159,29 +159,19 @@ export default {
     background-position: center !important;
     background-repeat: no-repeat;
     overflow: hidden;
-    top: 50%;
+    top: 0;
     left: 0;
-    height: 0;
     opacity: 0.3;
+    height: 100vh;
     width: 100vw;
+    transform: rotateX(90deg);
     transition: all 275ms linear;
 }
-.imageDownload::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #abf9;
-    backdrop-filter: blur(10px);
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
 .show {
+    z-index: 10;
     opacity: 1;
-    top: 0;
-    height: 100vh;
-    transition: all 275ms ease-out;
+    transform: rotateX(0deg);
+    transition: all 275ms linear;
 }
 
 .imageDownload.show > .operate {
