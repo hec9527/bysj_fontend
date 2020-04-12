@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 import API from '../API/API';
 import vueWaterfallEasy from 'vue-waterfall-easy';
 import { mapImageUrl } from '../tools/util';
@@ -71,7 +71,7 @@ export default {
     },
     methods: {
         fetchData() {
-            const searchInfo = this.getSearchInfo();
+            const searchInfo = this.searchResult;
             const kw = searchInfo.kw || this.defaultKw;
             API.fetchKeyWorkds({
                 kw,
@@ -132,8 +132,7 @@ export default {
         loadMore() {
             this.fetchData();
         },
-        ...mapGetters(['getSearchInfo']),
-        ...mapMutations(['UPDATE_SEARCH_RESULT'])
+        ...mapGetters(['getSearchInfo'])
     },
     components: {
         waterFall: vueWaterfallEasy,
