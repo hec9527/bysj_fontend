@@ -60,7 +60,7 @@ export default new vuex.Store({
                 total: payload.total,
                 count: payload.count,
                 data: state.searchInfo.data.concat(payload.data),
-                len: payload.len
+                len: state.searchInfo.len
             };
         },
         UPDATE_SEARCH_INFO(state, payload) {

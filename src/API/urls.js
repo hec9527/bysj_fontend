@@ -25,6 +25,7 @@ URL.IMAGES_TYPE_INFO = baseUrl + '/a/get/getImageCategory';
 // 获取指定分类的图片
 URL.IMAGE_TYPE_DATA = baseUrl + '/a/get/getImageByCategory';
 
+// TODO   后端添加相应的接口
 // 加载出错的图片
 URL.IMAGES_LOAD_ERROR = baseUrl + '/a/get/imageLoadError';
 

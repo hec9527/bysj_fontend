@@ -10,12 +10,12 @@
             srcKey="cover"
             ref="waterfall"
             linkRange="card"
-            :reachBottomDistance="500"
+            :reachBottomDistance="800"
             :loadingDotCount="5"
             :loadingTimeOut="300"
             @scrollReachBottom="loadMore"
             @click="clickImage"
-            @imgError="imageLoadError"
+            @imgError="imageLoadError()"
         >
             <div slot="waterfall-over" :style="{ color: '#fff' }">我也是有底线的....</div>
         </water-fall>
@@ -125,6 +125,9 @@ export default {
         downloadImage(e, str) {
             window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
             downloadImage(this.imageInfo[str]);
+        },
+        imageLoadError() {
+            console.log(arguments);
         },
         loadMore() {
             this.fetchData();
