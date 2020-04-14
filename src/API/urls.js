@@ -11,7 +11,7 @@ URL.parmas = window.location.search;
 URL.SEARCH_KEYWORLD = baseUrl + '/a/get/home/keyworld';
 
 // bing最近7日的图片数据
-URL.BIYING_SEVERN_DAY = baseUrl + '/a/get/list/bingDaily';
+URL.BIYING_SEVERN_DAY = baseUrl + '/a/get/getBingDaily';
 
 // 每日英语数据
 URL.ENGLIST_DAILY_POST = baseUrl + '/a/get/list/englishDaily';
