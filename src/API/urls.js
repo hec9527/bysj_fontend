@@ -10,8 +10,8 @@ URL.parmas = window.location.search;
 // 关键字搜索
 URL.SEARCH_KEYWORLD = baseUrl + '/a/get/home/keyworld';
 
-// bing每日数据
-URL.BING_DAILY_POST = baseUrl + '/a/get/list/bingDaily';
+// bing最近7日的图片数据
+URL.BIYING_SEVERN_DAY = baseUrl + '/a/get/list/bingDaily';
 
 // 每日英语数据
 URL.ENGLIST_DAILY_POST = baseUrl + '/a/get/list/englishDaily';

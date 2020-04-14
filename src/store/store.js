@@ -1,5 +1,6 @@
 import vue from 'vue';
 import vuex from 'vuex';
+import {} from '../tools/util';
 
 vue.use(vuex);
 
@@ -22,7 +23,8 @@ export default new vuex.Store({
             data: [], // 数据源
             len: 30 // 分页大小
         },
-        allCategory: [] // 图片的分类信息
+        allCategory: [], // 图片的分类信息
+        bingDaily: [] // 必应美图的每日图片信息
     },
 
     // 异步操作使用action，异步结束在action中调用commit执行mutation
@@ -71,6 +73,10 @@ export default new vuex.Store({
                 data: [],
                 len: 30
             };
+        },
+        // 必应最近7日数据
+        UPDATE_BINY_DAILY(state, payload) {
+            state.bingDaily = payload;
         }
     },
 
@@ -87,6 +93,9 @@ export default new vuex.Store({
         },
         getCurrentCategory(state) {
             return state.categoryInfo.category;
+        },
+        getBingDaily(state) {
+            return state.bingDaily;
         }
     }
 });
