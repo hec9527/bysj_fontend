@@ -83,6 +83,10 @@ export default {
 </script>
 
 <style scoped>
+.glass {
+    backdrop-filter: blur(3px);
+}
+
 .carousel-content {
     position: absolute;
     bottom: 0;
