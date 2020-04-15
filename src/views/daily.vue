@@ -1,40 +1,27 @@
 <template>
-    <div class="container">
-        <!-- 提示框 -->
-        <el-dialog
-            title="提示"
-            :visible.sync="dialog"
-            width="30%"
-            center
-            :show-close="false"
-            :close-on-click-modal="false"
-        >
-            <span class="content">数据获取出错，是否重新获取？</span>
-            <span slot="footer" class="dialog-footer">
-                <el-button type="cancel" @click="dialog = false">关闭</el-button>
-                <el-button type="primary" @click="dialog = false || fetchDailyEnglish()">确 定</el-button>
-            </span>
-        </el-dialog>
-
-        <!-- 背景层 -->
-        <div class="bg" :style="{ 'background-image': `url(${data.url})` }">
-            <div class="daily daily-cover glass">
-                <div class="daily-title">{{ data.title }}</div>
-                <div class="daily-content">{{ data.content }}</div>
+    <div class="container glass">
+        <div class="background-img" :style="{ background: `url(${dailyEnglish.url})` }"></div>
+        <div class="message-container">
+            <div class="english-title">
+                <span>{{ dailyEnglish.english }} </span>
+                <span><i class="el-icon-headset play-btn" @click="playAudio"></i></span>
+                <span> <audio :src="dailyEnglish.voice" ref="audio"></audio> </span>
             </div>
+            <div class="translate-title">{{ dailyEnglish.translate }}</div>
+            <div class="date-title">{{ dailyEnglish.time }}</div>
         </div>
     </div>
 </template>
 
 <script>
 import API from '../API/API';
-import { Loading, Dialog } from 'element-ui';
+import { mapGetters } from 'vuex';
+import { Loading } from 'element-ui';
 
 export default {
     data() {
         return {
-            data: {},
-            dialog: false
+            retry: 0
         };
     },
     beforeMount() {
@@ -46,46 +33,67 @@ export default {
             API.fetchDailyEnglish()
                 .then(
                     res => {
-                        this.data = res.data;
-                        this.data.title = (this.data.title || '').toUpperCase();
+                        if (res.code === 0) {
+                            this.$store.commit('UPDATE_DAILY_ENGLISH', res.data[0]);
+                        } else {
+                            this.retry++;
+                            if (this.retry > 3) {
+                                Notification.console.error('每日英语数据获取失败!');
+                            }
+                        }
                     },
-                    err => {
-                        console.error(err);
-                        this.dialog = true;
+                    error => {
+                        console.error(error);
                     }
                 )
                 .finally(() => loadingInstance.close());
+        },
+        playAudio() {
+            this.$refs.audio.play();
+        },
+        ...mapGetters(['getDailyEnglish'])
+    },
+    computed: {
+        dailyEnglish: function() {
+            return this.getDailyEnglish();
         }
     },
-    components: {
-        elDialog: Dialog
-    },
-    beforeUpdate() {
-        console.log(this.$data);
-    }
+    components: {}
 };
 </script>
 
 <style scoped>
-.bg {
+.background-img {
     width: 100vw;
     height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-
-.daily.daily-cover {
+.message-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100vw;
     height: auto;
-    max-height: 170px;
-    padding: 15px;
-    overflow: hidden;
-    bottom: 0px;
+    backdrop-filter: blur(3px);
+    background: #0004;
     color: #fff;
+    padding: 15px 25px;
+}
+.english-title {
+    margin-bottom: 8px;
+    font-size: 24px;
     font-family: 'Times New Roman', Times, serif;
 }
-.daily .daily-title {
-    font-size: 28px;
+.english-title .play-btn {
+    color: #fff9;
+    cursor: pointer;
 }
-.daily .daily-content {
-    font-size: 16px;
+.date-title,
+.translate-title {
+    font-size: 12px;
+    color: #fff9;
+    margin-bottom: 4px;
 }
 </style>

@@ -33,6 +33,7 @@ export default {
             searchValue: ''
         };
     },
+    //TODO 更换首页搜索logo图标
     methods: {
         search() {
             this.$store.commit('UPDATE_SEARCH_INFO', this.searchValue);

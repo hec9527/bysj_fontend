@@ -35,28 +35,7 @@ API.fetchDailyPost = () => {
 
 // 获取每日英语数据
 API.fetchDailyEnglish = () => {
-    // return cnn.get(URL.ENGLIST_DAILY_POST)
-    // ! TODO 测试  临时数据
-    return new Promise((res, rej) => {
-        setTimeout(() => {
-            Math.random() > 0.1
-                ? res({
-                      code: 0,
-                      message: 'ok',
-                      data: {
-                          title: 'taday english',
-                          content: 'this is a day ,never so beautiful',
-                          date: new Date(),
-                          url:
-                              'http://cn.bing.com/th?id=OHR.PurpleWeekend_ZH-CN7324572668_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp'
-                      }
-                  })
-                : rej({
-                      code: 1,
-                      message: 'error'
-                  });
-        }, 100);
-    });
+    return cnn.get(URL.ENGLIST_DAILY_POST)
 };
 
 // 转发

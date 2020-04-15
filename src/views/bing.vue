@@ -33,7 +33,6 @@ import { Loading, Carousel, Notification } from 'element-ui';
 export default {
     data() {
         return {
-            dialog: false,
             retry: 0
         };
     },
@@ -64,7 +63,6 @@ export default {
                     },
                     err => {
                         console.error(err);
-                        this.dialog = true;
                     }
                 )
                 .finally(() => loadingInstance.close());

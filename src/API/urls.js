@@ -14,7 +14,7 @@ URL.SEARCH_KEYWORLD = baseUrl + '/a/get/home/keyworld';
 URL.BIYING_SEVERN_DAY = baseUrl + '/a/get/getBingDaily';
 
 // 每日英语数据
-URL.ENGLIST_DAILY_POST = baseUrl + '/a/get/list/englishDaily';
+URL.ENGLIST_DAILY_POST = baseUrl + '/a/get/getEnglishDaily';
 
 // 请求转发
 URL.FORWRAD_REQUEST = baseUrl + '/a/get/forward';

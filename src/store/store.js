@@ -24,7 +24,8 @@ export default new vuex.Store({
             len: 30 // 分页大小
         },
         allCategory: [], // 图片的分类信息
-        bingDaily: [] // 必应美图的每日图片信息
+        bingDaily: [], // 必应美图的每日图片信息
+        englishDaily: {} // 每日英语最新数据
     },
 
     // 异步操作使用action，异步结束在action中调用commit执行mutation
@@ -77,6 +78,10 @@ export default new vuex.Store({
         // 必应最近7日数据
         UPDATE_BINY_DAILY(state, payload) {
             state.bingDaily = payload;
+        },
+        // 每日英语最新数据
+        UPDATE_DAILY_ENGLISH(state, payload) {
+            state.englishDaily = payload;
         }
     },
 
@@ -96,6 +101,9 @@ export default new vuex.Store({
         },
         getBingDaily(state) {
             return state.bingDaily;
+        },
+        getDailyEnglish(state) {
+            return state.englishDaily;
         }
     }
 });
