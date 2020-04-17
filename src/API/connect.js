@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from '@/store/store';
 import { baseUrl } from '../config/baseURL';
-import { Message } from 'element-ui';
+import { Notification } from 'element-ui';
 
 const http = {};
 
@@ -17,23 +17,19 @@ const instance = axios.create({
     validateStatus(status) {
         switch (status) {
             case 400:
-                Message.error('请求出错');
+                Notification.error('请求出错');
                 break;
             case 401:
-                Message.warning('授权失败，请重新登录');
-                // store.commit('LOGIN_OUT');
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 1000);
+                Notification.warning('授权失败，请重新登录');
                 return;
             case 403:
-                Message.error('拒绝访问');
+                Notification.error('拒绝访问');
                 break;
             case 404:
-                Message.error('请求资源未找到');
+                Notification.error('请求资源未找到');
                 break;
             case 500:
-                Message.error('服务器错误');
+                Notification.error('服务器错误');
                 break;
         }
         return status >= 200 && status < 300;
@@ -61,13 +57,12 @@ instance.interceptors.response.use(
         if (res.status === 200) {
             return res.data;
         } else {
-            Message.warning(res.statusText);
+            Notification.warning(res.statusText);
             return res.data;
         }
     },
     error => {
-        Message.error('服务器返回数据异常');
-        console.error('Error:', error);
+        Notification.error('服务器失联了~~~~');
         return Promise.reject(error);
     }
 );
@@ -80,11 +75,14 @@ http.get = function(url, options) {
                 if (res.code === 0) {
                     resolve(res);
                 } else {
-                    Message.error(res.msg);
+                    Notification.error(res.msg);
                     reject(res);
                 }
             },
-            res => reject(res)
+            rej => {
+                Notification.error(rej.msg);
+                reject(rej);
+            }
         );
     });
 };
@@ -94,14 +92,16 @@ http.post = function(url, data, options) {
         instance.post(url, data, options).then(
             res => {
                 if (res.code === 0) {
-                    Message.success('ok');
-                    resolve(res.data);
+                    resolve(res);
                 } else {
-                    Message.error(res.msg);
+                    Notification.error(res.msg);
                     reject(res);
                 }
             },
-            res => reject(res)
+            rej => {
+                Notification.error(rej.msg);
+                reject(rej);
+            }
         );
     });
 };
