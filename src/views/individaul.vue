@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- 登录 注册 窗口增加过渡动画 -->
-        <div class="form-box" v-if="['login', 'regist'].includes(page)">
+        <div class="form-box" v-if="!userBasicInfo.userToken && ['login', 'regist'].includes(page)">
             <transition name="slide-login">
                 <UserLogin v-if="page === 'login'" :changePage="str => (page = str)"></UserLogin>
             </transition>
@@ -29,10 +29,13 @@ export default {
     data: () => {
         return {
             logined: false, // 用户是否登录
-            page: 'login' // 当前展示的组件 login regist  home
+            page: 'home' // 当前展示的组件 login regist  home
         };
     },
     mounted() {
+        if (!this.userBasicInfo.userToken) {
+            this.page = 'login';
+        }
         const self = this;
         window.changePage = str => (self.page = str);
         window.getInfo = () => console.log(self.userBasicInfo.userToken);

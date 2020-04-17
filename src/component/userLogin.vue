@@ -30,7 +30,7 @@
 <script>
 import API from '../API/API';
 import { mapGetters } from 'vuex';
-import { checklogin } from '../tools/util';
+import { checklogin, saveUserInfo } from '../tools/util';
 import { Loading, Notification } from 'element-ui';
 
 export default {
@@ -72,8 +72,7 @@ export default {
                 loginType: 0 // 使用账号登录
             })
                 .then(res => {
-                    // TODO 删除注释
-                    console.log('登录成功，Token：', res.token);
+                    saveUserInfo(this.userName, res.token);
                     this.changePage('home');
                     Notification.success(res.msg);
                     this.$store.commit('UPDATE_USER_INFO', { token: res.token, userName: this.userName });

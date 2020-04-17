@@ -20,6 +20,9 @@
             </el-popover>
             <router-link class="nav-items" to="/bing">必应美图</router-link>
             <router-link class="nav-items" to="/daily">每日英语</router-link>
+            <router-link v-if="userBasicInfo.userToken" class="nav-items" to="/share">分享</router-link>
+            <!-- TODO 管理员身份登录才可以看到 -->
+            <router-link v-if="true" class="nav-items" to="/manager">管理</router-link>
             <router-link class="nav-items" to="/indi">个人中心</router-link>
         </div>
         <router-view class="routerView"></router-view>
@@ -28,6 +31,7 @@
 
 <script>
 import API from './API/API';
+import { getUserInfo } from './tools/util';
 import { mapGetters } from 'vuex';
 import { Popover } from 'element-ui';
 
@@ -42,10 +46,14 @@ export default {
         API.fetchAllCategory().then(res => {
             this.$store.commit('UPDATE_ALL_CATEGORY', res.data);
         });
+        this.$store.commit('UPDATE_USER_INFO', getUserInfo());
     },
     computed: {
         category: function() {
             return this.getAllCategory();
+        },
+        userBasicInfo: function() {
+            return this.getUserBasicInfo();
         }
     },
     methods: {
@@ -55,7 +63,7 @@ export default {
             }
             window.location.hash = '/category';
         },
-        ...mapGetters(['getAllCategory', 'getCurrentCategory'])
+        ...mapGetters(['getAllCategory', 'getCurrentCategory', 'getUserBasicInfo'])
     },
     components: {
         elPopover: Popover
