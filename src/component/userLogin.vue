@@ -7,7 +7,14 @@
             </div>
             <!-- 禁用下来选择框自动填充，用户登录之后可以保存信息到 localstorage 页面加载后读取用户账户添加到 input 输入框  -->
             <input type="text" v-model="userName" name="username" placeholder="用户名" autocomplete="off" />
-            <input type="password" v-model="userPasswd" name="password" placeholder="密码" autocomplete="off" />
+            <input
+                type="password"
+                v-model="userPasswd"
+                name="password"
+                placeholder="密码"
+                autocomplete="off"
+                @keydown.enter="login"
+            />
             <div class="third-part-login">
                 <div class="title">第三方登录:</div>
                 <div class="login-qq"></div>

@@ -7,7 +7,14 @@
             </div>
             <input type="text" v-model="userName" name="username" placeholder="请输入用户名" autocomplete="off" />
             <input type="password" v-model="userPasswd" name="password" placeholder="请输入密码" autocomplete="off" />
-            <input type="password" v-model="userPasswdRe" name="password" placeholder="确认密码" autocomplete="off" />
+            <input
+                type="password"
+                v-model="userPasswdRe"
+                name="password"
+                placeholder="确认密码"
+                autocomplete="off"
+                @keydown.enter="regist"
+            />
             <button @click="regist">注册</button>
         </div>
 
