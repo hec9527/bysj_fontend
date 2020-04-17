@@ -29,6 +29,12 @@ URL.IMAGE_TYPE_DATA = baseUrl + '/a/get/getImageByCategory';
 // 加载出错的图片
 URL.IMAGES_LOAD_ERROR = baseUrl + '/a/get/imageLoadError';
 
+// 用户登录URL
+URL.USER_LOGIN = baseUrl + '/a/post/userLogin';
+
+// 用户注册URL
+URL.USER_REGIST = baseUrl + '/a/post/userRegist';
+
 // 百度图片下载API
 URL.BAIDU_IMAGE_DOWNLOADER = 'http://image.baidu.com/search/down?tn=download&word=download&ie=utf8&fr=detail&url=';
 

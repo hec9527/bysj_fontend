@@ -1,19 +1,14 @@
 <template>
     <div class="container">
-        <div class="login-form">
+        <div class="regist-form">
             <div class="form-title">
-                <h2 class="login">登 录</h2>
-                <span class="regist" @click="changePage('regist')">注册</span>
+                <span class="regist">注册</span>
+                <h2 class="login" @click="changePage('login')">登 录</h2>
             </div>
-            <!-- 禁用下来选择框自动填充，用户登录之后可以保存信息到 localstorage 页面加载后读取用户账户添加到 input 输入框  -->
-            <input type="text" v-model="userName" name="username" placeholder="用户名" autocomplete="off" />
-            <input type="password" v-model="userPasswd" name="password" placeholder="密码" autocomplete="off" />
-            <div class="third-part-login">
-                <div class="title">第三方登录:</div>
-                <div class="login-qq"></div>
-                <div class="login-wechat"></div>
-            </div>
-            <button @click="login">登录</button>
+            <input type="text" v-model="userName" name="username" placeholder="请输入用户名" autocomplete="off" />
+            <input type="password" v-model="userPasswd" name="password" placeholder="请输入密码" autocomplete="off" />
+            <input type="password" v-model="userPasswdRe" name="password" placeholder="确认密码" autocomplete="off" />
+            <button @click="regist">注册</button>
         </div>
 
         <el-loading v-if="loading"></el-loading>
@@ -22,8 +17,7 @@
 
 <script>
 import API from '../API/API';
-import { mapGetters } from 'vuex';
-import { checklogin } from '../tools/util';
+import { checkRegist } from '../tools/util';
 import { Loading, Notification } from 'element-ui';
 
 export default {
@@ -37,43 +31,35 @@ export default {
         return {
             userName: '',
             userPasswd: '',
+            userPasswdRe: '',
             loading: false
         };
-    },
-    mounted() {
-        this.userName = localStorage.getItem('userName');
-    },
-    computed: {
-        userInfo: () => {
-            const info = this.getUserBasicInfo();
-            this.userName = info.userName;
-            return info;
-        }
     },
     components: {
         elLoading: Loading
     },
     methods: {
-        login() {
-            const { userName, userPasswd } = this.$data;
-            const result = checklogin(userName, userPasswd);
+        regist() {
+            const { userName, userPasswd, userPasswdRe } = this.$data;
+            const result = checkRegist(userName, userPasswd, userPasswdRe);
             if (!result.flag) return Notification.error(result.message);
             setTimeout(() => (this.loading = false), 30 * 1000);
-            API.PostUserLogin({
-                userName: this.$data.userName,
-                userPasswd: this.$data.userPasswd,
-                loginType: 0 // 使用账号登录
+            API.PostUserRegist({
+                userName: this.userName,
+                userPasswd: this.userPasswd
             })
-                .then(res => {
-                    // TODO 删除注释
-                    console.log('登录成功，Token：', res.token);
-                    this.changePage('home');
-                    Notification.success(res.msg);
-                    this.$store.commit('UPDATE_USER_INFO', { token: res.token, userName: this.userName });
-                })
+                .then(
+                    res => {
+                        localStorage.setItem('userName', this.userName);
+                        this.changePage('login');
+                        Notification.success(res.msg);
+                    },
+                    rej => {
+                        console.log(rej);
+                    }
+                )
                 .finally(() => (this.loading = false));
-        },
-        ...mapGetters(['getUserBasicInfo'])
+        }
     }
 };
 </script>
@@ -94,7 +80,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .form-title {
     display: flex;
     justify-content: center;
@@ -102,9 +87,9 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
 }
-.login-form {
+.regist-form {
     width: 280px;
-    height: 270px;
+    height: 285px;
     display: flex;
     flex-direction: column;
     padding: 40px;
@@ -116,34 +101,34 @@ body {
     background: #fff3;
     overflow: hidden; /* 隐藏多余的模糊效果 */
 }
-.login {
+.regist {
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 8px;
     color: #638871;
     transition: all 275ms ease;
 }
-.regist {
+.login {
     margin-left: 8px;
     font-size: 12px;
     color: #abf3;
     cursor: pointer;
     transition: all 275ms ease;
 }
-.regist:hover {
+.login:hover {
     font-size: 20px;
     font-weight: 400px;
     margin-bottom: 8px;
     color: #638871;
     transition: all 275ms ease;
 }
-.regist:hover ~ h2.login {
+.login:hover ~ h2.login {
     font-size: 12px;
     color: #abf3;
     transition: all 275ms ease;
 }
-.login-form input,
-.login-form button {
+.regist-form input,
+.regist-form button {
     margin: 6px 0;
     height: 36px;
     border: none;
@@ -153,17 +138,17 @@ body {
     color: #3d5245;
 }
 
-.login-form input::placeholder {
+.regist-form input::placeholder {
     color: #3d5245;
 }
 
 /* 补充，取消选中高亮蓝框 */
-.login-form button:focus,
-.login-form input:focus {
+.regist-form button:focus,
+.regist-form input:focus {
     outline: 0;
 }
 
-.login-form button {
+.regist-form button {
     margin-top: 16px;
     background-color: rgba(57, 88, 69, 0.4);
     color: white;
@@ -173,16 +158,16 @@ body {
     transition: 0.4s;
 }
 
-.login-form button:hover {
+.regist-form button:hover {
     background-color: rgba(12, 80, 38, 0.67);
 }
 
-.login-form button:focus {
+.regist-form button:focus {
     outline: 0;
 }
 
-.login-form button::before,
-.login-form button::after {
+.regist-form button::before,
+.regist-form button::after {
     content: '';
     display: block;
     width: 80px;
@@ -198,7 +183,7 @@ body {
     transform: translateX(-100px);
 }
 
-.login-form button::after {
+.regist-form button::after {
     width: 40px;
     background: rgba(179, 255, 210, 0.3);
     left: 60px;
@@ -206,30 +191,18 @@ body {
     filter: blur(5px);
 }
 
-.login-form button:hover::before {
+.regist-form button:hover::before {
     transition: 1s;
     transform: translateX(320px);
     opacity: 0.7;
 }
 
-.login-form button:hover::after {
+.regist-form button:hover::after {
     transition: 1s;
     transform: translateX(320px);
     opacity: 1;
 }
-.third-part-login {
-    position: relative;
-    width: 100%;
-    height: 35px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-.title {
-    color: #fff7;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-        'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    text-align: left;
+.divider {
+    height: 26px;
 }
 </style>

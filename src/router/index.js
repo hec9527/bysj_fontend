@@ -8,12 +8,12 @@ const routes = [
     {
         path: '/',
         name: 'root',
-        redirect: '/home'
+        redirect: '/test'
     },
     {
         path: '/',
         name: 'test',
-        component: () => import('@/component/card-img.vue')
+        component: () => import('@/component/userLogin.vue')
     },
     {
         path: '/home',
@@ -29,6 +29,11 @@ const routes = [
         path: '/category',
         name: 'category',
         component: () => import('@/views/category.vue')
+    },
+    {
+        path: '/share',
+        name: 'share',
+        component: () => import('@/views/share.vue')
     },
     {
         path: '/bing',

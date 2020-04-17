@@ -7,7 +7,10 @@ vue.use(vuex);
 export default new vuex.Store({
     state: {
         userInfo: {
-            userToken: undefined
+            basic: {
+                userToken: undefined,
+                userName: undefined
+            }
         },
         searchInfo: {
             total: 0, // 总共
@@ -33,6 +36,12 @@ export default new vuex.Store({
 
     // vuex中用于修改state 的方式
     mutations: {
+        UPDATE_USER_INFO(state, payload) {
+            state.userInfo.basic = {
+                userToken: payload.token,
+                userName: payload.userName
+            };
+        },
         // 更新所有图片分类
         UPDATE_ALL_CATEGORY(state, payload) {
             state.allCategory = payload;
@@ -104,6 +113,9 @@ export default new vuex.Store({
         },
         getDailyEnglish(state) {
             return state.englishDaily;
+        },
+        getUserBasicInfo(state) {
+            return state.userInfo.basic;
         }
     }
 });

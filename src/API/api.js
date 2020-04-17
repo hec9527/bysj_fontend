@@ -35,7 +35,17 @@ API.fetchDailyPost = () => {
 
 // 获取每日英语数据
 API.fetchDailyEnglish = () => {
-    return cnn.get(URL.ENGLIST_DAILY_POST)
+    return cnn.get(URL.ENGLIST_DAILY_POST);
+};
+
+// 用户登录
+API.PostUserLogin = data => {
+    return cnn.post(URL.USER_LOGIN, data);
+};
+
+// 用户登录
+API.PostUserRegist = data => {
+    return cnn.post(URL.USER_REGIST, data);
 };
 
 // 转发

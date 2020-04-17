@@ -95,7 +95,6 @@ http.post = function(url, data, options) {
                     resolve(res);
                 } else {
                     Notification.error(res.msg);
-                    reject(res);
                 }
             },
             rej => {

@@ -1,5 +1,19 @@
 import URL from '../API/urls';
 
+// 账户校验规则
+const patternCount = [
+    { pattern: /^(.{0,6}|.{19,})$/, message: '请输入6到18位的用户名' },
+    { pattern: /^\d/, message: '用户名不能使用数字开头' },
+    { pattern: /['|"]/, message: '用户名不能包含单双引号' },
+    { pattern: /[\u4e00-\u9fa5]/, message: '用户名不能使用汉字' }
+];
+// 密码校验规则
+const patternPasswd = [
+    { pattern: /^(.{0,6}|.{19,})$/, message: '请输入8到18位的密码' },
+    { pattern: /[\u4e00-\u9fa5]/, message: '不能使用汉字作为密码' }
+    // { pattern: /^/, message: '密码应该包含数字、字母、特殊字符中的2中类型' }
+];
+
 /**
  *  处理图片的地址，为每一个图片添加一个cover地址
  * @param {Array} data
@@ -46,4 +60,39 @@ export function downloadImage(url) {
         el.href = URL.BAIDU_IMAGE_DOWNLOADER + url;
     }
     el.click();
+}
+
+/**
+ * 校验用户登录数据
+ * @param {String} count
+ * @param {String} passwd
+ * @return {Object} {flag:Boolean, message:String}
+ */
+export function checklogin(count, passwd) {
+    let fed = { flag: true, message: '' };
+    const callback = (item, prop) => {
+        if (item.pattern.test(prop)) {
+            fed = { flag: false, message: item.message };
+        }
+        return true;
+    };
+    patternCount.every(item => callback(item, count));
+    if (!fed.flag) return fed;
+    patternPasswd.every(item => callback(item, passwd));
+    return fed;
+}
+
+/**
+ * 注册时校验用户数据
+ * @param {String} count
+ * @param {String} passwd1
+ * @param {String} passwd2
+ */
+export function checkRegist(count, passwd1, passwd2) {
+    if (passwd1 !== passwd2) {
+        debugger;
+        return { flag: false, message: '两次输入的密码不一致' };
+    } else {
+        return checklogin(count, passwd1);
+    }
 }
