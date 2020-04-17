@@ -30,7 +30,7 @@
 <script>
 import API from '../API/API';
 import { mapGetters } from 'vuex';
-import { checklogin, saveUserInfo } from '../tools/util';
+import { checklogin, saveUserInfo, getUserName, saveUserName } from '../tools/util';
 import { Loading, Notification } from 'element-ui';
 
 export default {
@@ -48,12 +48,12 @@ export default {
         };
     },
     mounted() {
-        this.userName = localStorage.getItem('userName');
+        this.userName = getUserName();
     },
     computed: {
         userInfo: () => {
             const info = this.getUserBasicInfo();
-            this.userName = info.userName;
+            this.userName = info.userName || getUserName();
             return info;
         }
     },
@@ -73,8 +73,9 @@ export default {
             })
                 .then(res => {
                     saveUserInfo(this.userName, res.token);
-                    this.changePage('home');
+                    saveUserName(this.userName);
                     Notification.success(res.msg);
+                    this.changePage('home');
                     this.$store.commit('UPDATE_USER_INFO', { token: res.token, userName: this.userName });
                 })
                 .finally(() => (this.loading = false));

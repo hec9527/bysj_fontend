@@ -36,6 +36,11 @@ const routes = [
         component: () => import('@/views/share.vue')
     },
     {
+        path: '/manager',
+        name: 'manager',
+        component: () => import('@/views/manager.vue')
+    },
+    {
         path: '/bing',
         name: 'bing',
         component: () => import('@/views/bing.vue')

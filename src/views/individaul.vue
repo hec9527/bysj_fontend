@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container glass">
         <!-- 登录 注册 窗口增加过渡动画 -->
         <div class="form-box" v-if="!userBasicInfo.userToken && ['login', 'regist'].includes(page)">
             <transition name="slide-login">

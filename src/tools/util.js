@@ -98,6 +98,22 @@ export function checkRegist(count, passwd1, passwd2) {
 }
 
 /**
+ * 用户名保存在 localstorage 当中，方便再次登录时 不同填写用户名
+ * @param {string} userName
+ */
+export function saveUserName(userName) {
+    localStorage.setItem('userName', userName);
+}
+
+/**
+ * 获取保存在 localstorage 当中的用户名
+ * @returns {string}
+ */
+export function getUserName() {
+    return localStorage.getItem('userName') || undefined;
+}
+
+/**
  * 序列化用户信息保存到sessionStorage
  * @param {string} userName
  * @param {string} token
@@ -114,4 +130,12 @@ export function getUserInfo() {
     const userName = sessionStorage.getItem('userName');
     const token = sessionStorage.getItem('token');
     return { userName, token };
+}
+
+/**
+ * 删除 保存在 sessionstorage里面的用户信息
+ */
+export function delUserInfo() {
+    sessionStorage.removeItem('userName');
+    sessionStorage.removeItem('token');
 }
