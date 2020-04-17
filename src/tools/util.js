@@ -96,3 +96,22 @@ export function checkRegist(count, passwd1, passwd2) {
         return checklogin(count, passwd1);
     }
 }
+
+/**
+ * 序列化用户信息保存到sessionStorage
+ * @param {string} userName
+ * @param {string} token
+ */
+export function saveUserInfo(userName, token) {
+    sessionStorage.setItem('userName', userName);
+    sessionStorage.setItem('token', token);
+}
+
+/**
+ *  从sessionStorage中获取用户信息
+ */
+export function getUserInfo() {
+    const userName = sessionStorage.getItem('userName');
+    const token = sessionStorage.getItem('token');
+    return { userName, token };
+}
