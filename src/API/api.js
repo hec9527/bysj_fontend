@@ -4,6 +4,8 @@ import { parmasConcat } from '../tools/util';
 
 const API = {};
 
+// TODO 优化 将API的调用集中在一个文件中，其它地方直接调用这个文件的方法即可，方便统一的修改维护
+
 // 首页查询关键字
 API.fetchKeyWorkds = opt => {
     const url = parmasConcat(URL.SEARCH_KEYWORLD, opt);
@@ -46,6 +48,11 @@ API.PostUserLogin = data => {
 // 用户登录
 API.PostUserRegist = data => {
     return cnn.post(URL.USER_REGIST, data);
+};
+
+// 获取用户所有信息
+API.fetchUserInfoAll = () => {
+    return cnn.get(URL.GET_USER_INFO_ALL);
 };
 
 // 转发

@@ -15,6 +15,10 @@ export default {
         return {
             //
         };
+    },
+    mounted() {
+        // 挂载之后获取用户的所有信息
+        //
     }
 };
 </script>

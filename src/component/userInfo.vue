@@ -1,20 +1,27 @@
 <template>
     <div class="container">
         <div class="content">
+            <!-- 左侧 用户信息展示 -->
             <div class="aside">
                 <userInfoBasic :changePage="this.changePage" />
             </div>
-            <div class="main"></div>
+            <!-- 右侧 用户上传数据展示 -->
+            <div class="main">
+                <!-- 标题展示 -->
+                <div class="box-title">个人分享</div>
+                <userUploaded></userUploaded>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import API from '../API/API';
+// import API from '../API/API';
 import basicInfo from './userInfoBasic';
+import userUploaded from './userUploadDate';
 import { mapGetters } from 'vuex';
-import { checklogin } from '../tools/util';
-import { Notification } from 'element-ui';
+// import { checklogin } from '../tools/util';
+// import { Notification } from 'element-ui';
 
 export default {
     props: {
@@ -35,7 +42,8 @@ export default {
         }
     },
     components: {
-        userInfoBasic: basicInfo
+        userInfoBasic: basicInfo,
+        userUploaded
     },
     methods: {
         ...mapGetters(['getUserBasicInfo'])
@@ -73,10 +81,23 @@ export default {
     box-sizing: border-box;
     margin: 8px 16px;
     border-radius: 4px;
-    background: #fff;
 }
 .aside {
     position: relative;
     width: 300px;
+}
+
+.box-title {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 48px;
+    border-radius: 4px;
+    color: #666;
+    background: #fff;
+    font-size: 15px;
+    line-height: 48px;
+    font-family: 'Microsoft YaHei', 'Microsoft Sans Serif', 'Microsoft SanSerf', 微软雅黑;
+    padding-left: 16px;
 }
 </style>

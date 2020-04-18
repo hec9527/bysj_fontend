@@ -88,12 +88,7 @@ export default {
                 this.$store.commit('UPDATE_SEARCH_RESULT', data);
                 if (res.len === 0) {
                     if (searchInfo.data.length === 0) {
-                        Notification({
-                            title: '错误',
-                            type: 'error',
-                            position: 'top-right',
-                            message: '找不到相关数据条目，换一个关键词试试'
-                        });
+                        Notification.error('找不到相关数据条目，换一个关键词试试');
                         return (window.location.hash = '/home');
                     }
                     this.$refs.waterfall.waterfallOver();

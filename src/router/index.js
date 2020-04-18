@@ -60,6 +60,12 @@ const routes = [
     }
 ];
 
+// 装载路由表
+const router = new VueRouter({
+    linkActiveClass: 'nav-this',
+    routes: routes
+});
+
 // 每次跳转之前校验权限
 router.beforeEach((to, from, next) => {
     // 需要权限校验
@@ -73,12 +79,6 @@ router.beforeEach((to, from, next) => {
         }
     }
     next();
-});
-
-// 装载路由表
-const router = new VueRouter({
-    linkActiveClass: 'nav-this',
-    routes: routes
 });
 
 export default router;

@@ -65,11 +65,15 @@
                 </div>
             </div>
         </div>
+
+        <!-- 更多用户信息 -->
+        <div class="more-info">
+            <!--  -->
+        </div>
     </div>
 </template>
 
 <script>
-import { Icon } from 'element-ui';
 import { delUserInfo } from '../tools/util';
 import { Notification } from 'element-ui';
 
@@ -183,7 +187,6 @@ export default {
     height: 60px;
     cursor: pointer;
     color: #ccc;
-    background: #cc;
 }
 
 .row div i {

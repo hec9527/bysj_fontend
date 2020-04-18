@@ -1,3 +1,12 @@
+/**
+ * @author    hec9527
+ * @time      2019-10-18
+ * @change    2020-04-18
+ * @description
+ *
+ *     功能性函数
+ */
+
 import URL from '../API/urls';
 
 // 账户校验规则

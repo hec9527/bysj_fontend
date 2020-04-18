@@ -40,10 +40,10 @@ const instance = axios.create({
 instance.interceptors.request.use(
     config => {
         // 请求头添加token
-        if (store.state.userInfo.userToken) {
-            config.headers.Authorization = store.state.userInfo.userToken;
+        const token = store.state.userInfo.basic.userToken;
+        if (token) {
+            config.headers.Authorization = token;
         }
-        // console.log('发起请求，config：', config);
         return config;
     },
     error => {

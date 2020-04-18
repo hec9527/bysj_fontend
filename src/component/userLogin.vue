@@ -64,22 +64,37 @@ export default {
         login() {
             const { userName, userPasswd } = this.$data;
             const result = checklogin(userName, userPasswd);
+
             if (!result.flag) return Notification.error(result.message);
             setTimeout(() => (this.loading = false), 30 * 1000);
+
             API.PostUserLogin({
                 userName: this.$data.userName,
                 userPasswd: this.$data.userPasswd,
                 loginType: 0 // 使用账号登录
             })
                 .then(res => {
+                    debugger;
                     saveUserInfo(this.userName, res.token);
                     saveUserName(this.userName);
                     Notification.success(res.msg);
+                    this.fetchUserInfoAll();
                     this.changePage('home');
                     this.$store.commit('UPDATE_USER_INFO', { token: res.token, userName: this.userName });
                 })
                 .finally(() => (this.loading = false));
         },
+        fetchUserInfoAll() {
+            API.fetchUserInfoAll().then(
+                res => {
+                    console.log(res);
+                },
+                rej => {
+                    console.log(rej);
+                }
+            );
+        },
+
         ...mapGetters(['getUserBasicInfo'])
     }
 };
