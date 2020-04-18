@@ -38,6 +38,9 @@ URL.USER_REGIST = baseUrl + '/a/post/userRegist';
 // 获取用户所有的信息
 URL.GET_USER_INFO_ALL = baseUrl + '/v/get/userInfo';
 
+// 图片识别API
+URL.IMAGE_IDENTIFY = baseUrl + '/a/post/imageIdentify';
+
 // 百度图片下载API
 URL.BAIDU_IMAGE_DOWNLOADER = 'http://image.baidu.com/search/down?tn=download&word=download&ie=utf8&fr=detail&url=';
 

@@ -49,9 +49,15 @@ export default {
             this.$store.commit('UPDATE_ALL_CATEGORY', res.data);
         });
         if (this.$store.state.userInfo.basic.userToken) {
-            API.fetchUserInfoAll().then(res => {
-                this.$store.commit('UPDATE_USER_INFO_ALL', res.data);
-            });
+            API.fetchUserInfoAll().then(
+                res => {
+                    this.$store.commit('UPDATE_USER_INFO_ALL', res.data);
+                },
+                () => {
+                    this.$store.commit('UPDATE_USER_INFO_ALL', {});
+                    this.$store.commit('UPDATE_USER_INFO', { token: undefined });
+                }
+            );
         }
     },
     computed: {

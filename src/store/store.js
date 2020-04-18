@@ -40,7 +40,7 @@ export default new vuex.Store({
         UPDATE_USER_INFO(state, payload) {
             state.userInfo.basic = {
                 userToken: payload.token,
-                userName: payload.userName
+                userName: payload.userName || this.state.userInfo.basic.userName
             };
         },
         UPDATE_USER_INFO_ALL(state, payload) {

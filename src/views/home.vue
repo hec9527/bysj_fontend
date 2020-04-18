@@ -10,27 +10,51 @@
                     v-model.trim="searchValue"
                     @keydown.enter="search"
                 />
-                <div class="search-btn">
-                    <span @click="search">
-                        <svg focusable="false" fill="#5caef1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path
-                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                            ></path>
-                        </svg>
-                    </span>
+
+                <div class="btn-box">
+                    <div>
+                        <span title="智能识图" @click="showImageUpload = !showImageUpload">
+                            <i class="el-icon-camera"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <span title="搜索关键字" @click="search">
+                            <i class="el-icon-search"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
+            <el-upload
+                v-if="showImageUpload"
+                class="upload-image"
+                accept=".jpg,.jpeg,.png,.bmp,.gif"
+                @on-success="loadSuccess"
+                @on-error="loadError"
+                @on-progress="uploading"
+                :auto-upload="true"
+                drag
+                :action="imageLoadAction"
+            >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+            </el-upload>
         </div>
     </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
+// import API from '../API/API';
+import URL from '../API/urls';
+import { Notification } from 'element-ui';
 
 export default {
     data: () => {
         return {
-            searchValue: ''
+            searchValue: '',
+            showImageUpload: false,
+            imageLoadAction: URL.IMAGE_IDENTIFY
         };
     },
     //TODO 更换首页搜索logo图标
@@ -38,6 +62,15 @@ export default {
         search() {
             this.$store.commit('UPDATE_SEARCH_INFO', this.searchValue);
             window.location.hash = '/search';
+        },
+        loadSuccess() {
+            Notification.success('图片上传成功');
+        },
+        loadError() {
+            Notification.error('图片上传失败');
+        },
+        uploading() {
+            Notification.info('文件正在上传');
         },
         ...mapMutations(['UPDATE_SEARCH_INFO'])
     }
@@ -52,9 +85,9 @@ export default {
 .search.search-cover {
     margin-top: -15%;
     width: 650px;
-    height: 400px;
+    height: auto;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
@@ -91,15 +124,27 @@ export default {
     color: #5caef1;
 }
 
-.search-btn {
+.btn-box {
     position: absolute;
+    height: 56px;
+    width: 90px;
     top: 0;
-    bottom: 0;
-    width: 24px;
-    height: 24px;
-    right: 20px;
-    margin: auto;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-box div {
     cursor: pointer;
+    color: #ccc;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px !important;
 }
 
 input::-webkit-input-placeholder {
@@ -110,5 +155,10 @@ input::-moz-input-placeholder {
 }
 input::-ms-input-placeholder {
     color: #abf7;
+}
+
+.upload-image {
+    position: absolute;
+    bottom: -80%;
 }
 </style>
