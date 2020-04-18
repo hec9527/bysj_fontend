@@ -7,6 +7,7 @@ vue.use(vuex);
 export default new vuex.Store({
     state: {
         userInfo: {
+            all: {},
             basic: {
                 userToken: undefined,
                 userName: undefined
@@ -41,6 +42,9 @@ export default new vuex.Store({
                 userToken: payload.token,
                 userName: payload.userName
             };
+        },
+        UPDATE_USER_INFO_ALL(state, payload) {
+            state.userInfo.all = { ...payload };
         },
         // 更新所有图片分类
         UPDATE_ALL_CATEGORY(state, payload) {
@@ -116,6 +120,12 @@ export default new vuex.Store({
         },
         getUserBasicInfo(state) {
             return state.userInfo.basic;
+        },
+        getUserAllInfo(state) {
+            return state.userInfo.all;
+        },
+        getUserpermission(state) {
+            return state.userInfo.all.permission || 3;
         }
     }
 });

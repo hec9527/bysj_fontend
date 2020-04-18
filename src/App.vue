@@ -22,7 +22,8 @@
             <router-link class="nav-items" to="/daily">每日英语</router-link>
             <router-link v-if="userBasicInfo.userToken" class="nav-items" to="/share">分享</router-link>
             <!-- TODO 管理员身份登录才可以看到 -->
-            <router-link v-if="true" class="nav-items" to="/manager">管理</router-link>
+            <!-- TODO 修改为响应式更新 -->
+            <router-link v-if="userPermission === 0" class="nav-items" to="/manager">管理</router-link>
             <router-link class="nav-items" to="/indi">个人中心</router-link>
         </div>
         <router-view class="routerView"></router-view>
@@ -43,10 +44,15 @@ export default {
     },
     mounted() {
         console.log('App mounted');
+        this.$store.commit('UPDATE_USER_INFO', getUserInfo());
         API.fetchAllCategory().then(res => {
             this.$store.commit('UPDATE_ALL_CATEGORY', res.data);
         });
-        this.$store.commit('UPDATE_USER_INFO', getUserInfo());
+        if (this.$store.state.userInfo.basic.userToken) {
+            API.fetchUserInfoAll().then(res => {
+                this.$store.commit('UPDATE_USER_INFO_ALL', res.data);
+            });
+        }
     },
     computed: {
         category: function() {
@@ -54,6 +60,12 @@ export default {
         },
         userBasicInfo: function() {
             return this.getUserBasicInfo();
+        },
+        userAllInfo: function() {
+            return this.getUserAllInfo();
+        },
+        userPermission: function() {
+            return this.getUserpermission();
         }
     },
     methods: {
@@ -63,10 +75,20 @@ export default {
             }
             window.location.hash = '/category';
         },
-        ...mapGetters(['getAllCategory', 'getCurrentCategory', 'getUserBasicInfo'])
+
+        ...mapGetters([
+            'getAllCategory',
+            'getCurrentCategory',
+            'getUserBasicInfo',
+            'getUserAllInfo',
+            'getUserpermission'
+        ])
     },
     components: {
         elPopover: Popover
+    },
+    updated() {
+        console.log(this.userPermission);
     }
 };
 </script>

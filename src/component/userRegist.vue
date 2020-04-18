@@ -105,7 +105,7 @@ body {
     z-index: 100;
     border-radius: 18px;
     backdrop-filter: blur(5px);
-    background: #fff3;
+    background: #fff5;
     overflow: hidden; /* 隐藏多余的模糊效果 */
 }
 .regist {

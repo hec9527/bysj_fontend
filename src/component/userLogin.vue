@@ -74,7 +74,6 @@ export default {
                 loginType: 0 // 使用账号登录
             })
                 .then(res => {
-                    debugger;
                     saveUserInfo(this.userName, res.token);
                     saveUserName(this.userName);
                     Notification.success(res.msg);
@@ -135,7 +134,7 @@ body {
     z-index: 100;
     border-radius: 18px;
     backdrop-filter: blur(5px);
-    background: #fff3;
+    background: #fff5;
     overflow: hidden; /* 隐藏多余的模糊效果 */
 }
 .login {
