@@ -23,7 +23,7 @@
 import { mapGetters } from 'vuex';
 import Login from '../component/userLogin';
 import Regist from '../component/userRegist';
-import Info from '../component/userInfo';
+import Info from '../component/userProfile';
 
 export default {
     data: () => {
@@ -102,6 +102,7 @@ export default {
     width: 100%;
     height: 100%;
     backdrop-filter: blur(3px);
+    overflow-y: auto;
 }
 .form-box {
     background: #0007;

@@ -125,7 +125,7 @@ export default new vuex.Store({
             return state.userInfo.all;
         },
         getUserpermission(state) {
-            return state.userInfo.all.permission || 3;
+            return state.userInfo.all.permission;
         }
     }
 });

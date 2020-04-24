@@ -85,12 +85,8 @@ export default {
         },
         fetchUserInfoAll() {
             API.fetchUserInfoAll().then(
-                res => {
-                    console.log(res);
-                },
-                rej => {
-                    console.log(rej);
-                }
+                res => this.$store.commit('UPDATE_USER_INFO_ALL', res.data),
+                rej => console.log(rej)
             );
         },
 

@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <!-- http://p0.qhimg.com/bdr/__30/t01c4bfcda5b171e04d.jpg -->
         <div class="content">
             <!-- 左侧 用户信息展示 -->
             <div class="aside">
@@ -16,12 +17,9 @@
 </template>
 
 <script>
-// import API from '../API/API';
 import basicInfo from './userInfoBasic';
 import userUploaded from './userUploadDate';
 import { mapGetters } from 'vuex';
-// import { checklogin } from '../tools/util';
-// import { Notification } from 'element-ui';
 
 export default {
     props: {

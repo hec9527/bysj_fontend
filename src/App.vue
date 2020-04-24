@@ -48,17 +48,15 @@ export default {
         API.fetchAllCategory().then(res => {
             this.$store.commit('UPDATE_ALL_CATEGORY', res.data);
         });
-        if (this.$store.state.userInfo.basic.userToken) {
-            API.fetchUserInfoAll().then(
-                res => {
-                    this.$store.commit('UPDATE_USER_INFO_ALL', res.data);
-                },
-                () => {
-                    this.$store.commit('UPDATE_USER_INFO_ALL', {});
-                    this.$store.commit('UPDATE_USER_INFO', { token: undefined });
-                }
-            );
-        }
+        API.fetchUserInfoAll().then(
+            res => {
+                this.$store.commit('UPDATE_USER_INFO_ALL', res.data);
+            },
+            () => {
+                this.$store.commit('UPDATE_USER_INFO_ALL', {});
+                this.$store.commit('UPDATE_USER_INFO', { token: undefined });
+            }
+        );
     },
     computed: {
         category: function() {
@@ -94,7 +92,7 @@ export default {
         elPopover: Popover
     },
     updated() {
-        console.log(this.userPermission);
+        console.log('用户权限：', this.userPermission);
     }
 };
 </script>
