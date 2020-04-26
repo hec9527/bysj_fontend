@@ -26,7 +26,13 @@ export default {
         setInterval(() => {
             fetch('https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=28&encode=json')
                 .then(res => res.json())
-                .then(data => this.$refs.dialogue.showMessage(data.hitokoto));
+                .then(data => {
+                    try {
+                        this.$refs.dialogue.showMessage(data.hitokoto);
+                    } catch (error) {
+                        return false;
+                    }
+                });
         }, 10000);
     },
     methods: {}
