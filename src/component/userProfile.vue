@@ -77,6 +77,11 @@
                 </div>
             </div>
         </div>
+
+        <!-- 看板娘 -->
+        <div class="watcher">
+            <live2d />
+        </div>
     </div>
 </template>
 
@@ -84,7 +89,8 @@
 import { delUserInfo } from '../tools/util';
 import { Notification } from 'element-ui';
 import API from '../API/API';
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
+import live2d from '../component/live2d.vue';
 
 export default {
     props: {
@@ -135,7 +141,10 @@ export default {
             //
         }
     },
-    computed: {}
+    computed: {},
+    components: {
+        live2d
+    }
 };
 </script>
 
@@ -288,5 +297,13 @@ export default {
     height: 1px;
     margin-bottom: 4px;
     border-top: 1px solid #cccf;
+}
+.watcher {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
 }
 </style>
