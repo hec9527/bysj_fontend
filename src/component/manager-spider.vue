@@ -100,7 +100,7 @@ export default {
             } else if (this.active === '2-2') {
                 this.spiderName = '金山每日英语爬虫管理';
             } else if (this.active === '2-3') {
-                this.spiderName = '必应每日图片怕从管理';
+                this.spiderName = '必应每日图片爬虫管理';
             }
             this.tableData = this.getDate();
         }

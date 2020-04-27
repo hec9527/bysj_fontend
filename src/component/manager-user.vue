@@ -31,7 +31,11 @@
                 </el-table-column>
                 <el-table-column prop="name" label="昵称" width="200" />
                 <el-table-column prop="age" label="年龄" />
-                <el-table-column prop="sex" label="性别" />
+                <el-table-column prop="sex" label="性别">
+                    <template slot-scope="scope">
+                        {{ scope.row.sex === 0 ? '男' : scope.row.sex === 1 ? '女' : '保密' }}
+                    </template>
+                </el-table-column>
                 <el-table-column prop="vip" label="VIP" />
                 <el-table-column prop="level" label="等级" />
                 <el-table-column prop="balance" label="账户" width="100" />
@@ -111,6 +115,7 @@ export default {
             API.deleteUserInfo(id).then(
                 res => {
                     Notification.success(res.msg);
+                    this.fetchUserList();
                 },
                 () => console.log('用户信息删除失败')
             );
@@ -141,8 +146,6 @@ export default {
                     () => console.error('用户添加失败')
                 )
                 .finally(() => {
-                    console.log('finnal');
-
                     this.showModal = false;
                     loadingInstance.close();
                 });
