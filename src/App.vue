@@ -92,7 +92,7 @@ export default {
         elPopover: Popover
     },
     updated() {
-        console.log('用户权限：', this.userPermission);
+        // console.log('用户权限：', this.userPermission);
     }
 };
 </script>

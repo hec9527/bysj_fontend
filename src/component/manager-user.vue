@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <!-- 页面操作区域 -->
         <div class="page-oprater">
             <div class="page-title">
                 <h1>用户管理</h1>
@@ -12,10 +13,12 @@
                     <el-button type="danger">删除</el-button>
                 </div>
                 <div class="btn">
-                    <el-button type="primary">新增</el-button>
+                    <el-button type="primary" @click="addUserInfo">新增</el-button>
                 </div>
             </div>
         </div>
+
+        <!-- 页面列表数据 -->
         <div class="page-body">
             <el-table ref="userTable" :data="userDate" highlight-current-row style="width: 100%">
                 <el-table-column prop="id" label="用户ID" fixed />
@@ -53,22 +56,55 @@
                 </el-table-column>
             </el-table>
         </div>
+
+        <!-- 页面modal窗口 -->
+        <el-dialog :title="isEdit ? '编辑用户信息' : '新增用户信息'" width="460" :visible.sync="showModal">
+            <el-form ref="form" :model="form" label-width="80px">
+                <el-form-item label="账户名">
+                    <el-input v-model="form.count"></el-input>
+                </el-form-item>
+                <el-form-item label="用户名">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input v-model="form.passwd"></el-input>
+                </el-form-item>
+                <el-form-item label="性别">
+                    <el-select v-model="form.sex" de placeholder="来选一个吧">
+                        <el-option label="男" value="0"></el-option>
+                        <el-option label="女" value="1"></el-option>
+                        <el-option label="保密" value="2"></el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="showModal = false">取 消</el-button>
+                <el-button type="primary" @click="saveUserInfo">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-import { Button, Notification } from 'element-ui';
+import { Button, Notification, Dialog, Loading } from 'element-ui';
 import API from '../API/API';
 import { mapGetters } from 'vuex';
+import { checklogin } from '../tools/util';
 
 export default {
     data: () => {
         return {
-            count: 0
+            count: 0,
+            showModal: false,
+            isEdit: false,
+            editData: {},
+            form: {}
         };
     },
     components: {
-        elButton: Button
+        elButton: Button,
+        elDialog: Dialog
     },
     methods: {
         deleteUser(id) {
@@ -82,13 +118,45 @@ export default {
         editUser(info) {
             console.log(info);
         },
+        addUserInfo() {
+            this.showModal = !this.showModal;
+            this.isEdit = false;
+        },
+        saveUserInfo() {
+            const checkResult = checklogin(this.form.count, this.form.passwd);
+            if (!checkResult.flag) {
+                return Notification.error(checkResult.message);
+            }
+            const loadingInstance = Loading.service({ fullscreen: true, text: 'loading' });
+            setTimeout(() => {
+                this.showModal = false;
+                loadingInstance.close();
+            }, 30 * 1000);
+            API.addUserInfo(this.form)
+                .then(
+                    res => {
+                        Notification.success(res.msg);
+                        this.fetchUserList();
+                    },
+                    () => console.error('用户添加失败')
+                )
+                .finally(() => {
+                    console.log('finnal');
+
+                    this.showModal = false;
+                    loadingInstance.close();
+                });
+        },
+        fetchUserList() {
+            API.fetchAllUserInfo({ count: 0, len: 100 }).then(
+                res => this.$store.commit('UPDATE_USER_LIST', res.data),
+                () => console.warn('所有用户信息获取失败')
+            );
+        },
         ...mapGetters(['getAllUserInfo'])
     },
     mounted() {
-        API.fetchAllUserInfo({ count: 0, len: 100 }).then(
-            res => this.$store.commit('UPDATE_USER_LIST', res.data),
-            () => console.warn('所有用户信息获取失败')
-        );
+        this.fetchUserList();
     },
     computed: {
         userDate: function() {
