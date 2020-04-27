@@ -41,6 +41,18 @@ URL.GET_USER_INFO_ALL = baseUrl + '/v/get/userInfo';
 // 调用爬虫模块获取新数据
 URL.SPIDER_NEW_DATA = baseUrl + '/m/spiderNewData';
 
+// 获取所有的用户信息
+URL.GET_ALL_USER_INFO = baseUrl + '/m/get/allUserInfo';
+
+// 删除用户信息
+URL.DELETE_USER_INFO = baseUrl + '/m/delete/userInfo';
+
+// 更新用户信息
+URL.UPDATE_USER_INFO = baseUrl + '/m/update/userInfo';
+
+// 新增用户数据
+URL.ADD_USER_INFO = baseUrl + '/m/add/userInfo';
+
 // 图片识别API
 URL.IMAGE_IDENTIFY = baseUrl + '/a/post/imageIdentify';
 

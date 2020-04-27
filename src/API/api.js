@@ -60,6 +60,26 @@ API.fetchSpiderDate = id => {
     return cnn.get(URL.SPIDER_NEW_DATA + `?id=${id}`);
 };
 
+// 获取所有用户信息
+API.fetchAllUserInfo = parma => {
+    return cnn.get(parmasConcat(URL.GET_ALL_USER_INFO, parma));
+};
+
+// 删除用户信息
+API.deleteUserInfo = id => {
+    return cnn.get(URL.DELETE_USER_INFO + '?id=' + id);
+};
+
+// 更新用户信息
+API.updateUserInfo = data => {
+    return cnn.post(URL.UPDATE_USER_INFO, data);
+};
+
+// 新增用户信息
+API.addUserInfo = data => {
+    return cnn.post(URL.ADD_USER_INFO, data);
+};
+
 // 转发
 API.forwardRequest = url => {
     return cnn.get(URL.FORWRAD_REQUEST + `?url=${url}`);

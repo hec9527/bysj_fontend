@@ -22,10 +22,9 @@
                             系统管理
                         </template>
                         <el-menu-item index="3-1">用户管理</el-menu-item>
-                        <el-menu-item index="3-2">权限管理</el-menu-item>
-                        <el-menu-item index="3-3">图片管理</el-menu-item>
-                        <el-menu-item index="4-2">系统日志</el-menu-item>
-                        <el-menu-item index="4-1">系统设置</el-menu-item>
+                        <el-menu-item index="3-2">图片管理</el-menu-item>
+                        <el-menu-item index="3-3">系统日志</el-menu-item>
+                        <el-menu-item index="3-4">系统设置</el-menu-item>
                     </el-menu-item-group>
                 </el-menu>
             </el-aside>
@@ -33,6 +32,7 @@
             <el-container>
                 <el-header :height="'50'" style="text-align: right; font-size: 12px">
                     <el-dropdown>
+                        <!-- TODO 增加用户信息页面跳转， 用户退出 -->
                         <i class="el-icon-setting" style="margin-right: 15px"></i>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item>信息</el-dropdown-item>
@@ -68,12 +68,9 @@ export default {
         };
     },
     mounted() {
-        // 挂载之后获取用户的所有信息
-        //
+        // TODO 挂载之后获取用户的所有信息
     },
-    methods: {
-        //
-    },
+    methods: {},
     components: {
         elContainer: Container,
         managerVu,

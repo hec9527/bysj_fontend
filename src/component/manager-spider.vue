@@ -42,24 +42,8 @@ export default {
         }
     },
     data: () => {
-        const ONE_DAY = 86400000;
-        const TODAY = new Date().getTime();
-        const getDate = () => {
-            let data = [];
-            for (let i = 0; i < 50; i++) {
-                data.push({
-                    date: new Date(TODAY - ONE_DAY * i).toLocaleDateString(),
-                    operater: Math.random() < 0.5 ? 'system' : Math.random() < 0.5 ? 'admin123123' : 'tom AD',
-                    inrement: ((Math.random() * 3000) | 0) + 200,
-                    exist: ((Math.random() * 2000) | 0) + 200,
-                    during: ((Math.random() * 300) | 0) + 15
-                });
-            }
-            return data;
-        };
-
         return {
-            tableData: getDate(),
+            tableData: [],
             spiderName: '360壁纸爬虫管理',
             dialogVisible: false
         };
@@ -86,10 +70,28 @@ export default {
                     return i;
                 }
             }
+        },
+        getDate() {
+            const ONE_DAY = 86400000;
+            const TODAY = new Date().getTime();
+            let data = [];
+            for (let i = 0; i < 50; i++) {
+                data.push({
+                    date: new Date(TODAY - ONE_DAY * i).toLocaleDateString(),
+                    operater: Math.random() < 0.5 ? 'system' : Math.random() < 0.5 ? 'admin123123' : 'tom AD',
+                    inrement: ((Math.random() * 3000) | 0) + 200,
+                    exist: ((Math.random() * 2000) | 0) + 200,
+                    during: ((Math.random() * 300) | 0) + 15
+                });
+            }
+            return data;
         }
     },
     components: {
         elDialog: Dialog
+    },
+    mounted() {
+        this.tableData = this.getDate();
     },
     watch: {
         active: function() {
@@ -100,6 +102,7 @@ export default {
             } else if (this.active === '2-3') {
                 this.spiderName = '必应每日图片怕从管理';
             }
+            this.tableData = this.getDate();
         }
     }
 };

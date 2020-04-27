@@ -29,7 +29,8 @@ export default new vuex.Store({
         },
         allCategory: [], // 图片的分类信息
         bingDaily: [], // 必应美图的每日图片信息
-        englishDaily: {} // 每日英语最新数据
+        englishDaily: {}, // 每日英语最新数据
+        userList: []
     },
 
     // 异步操作使用action，异步结束在action中调用commit执行mutation
@@ -37,6 +38,11 @@ export default new vuex.Store({
 
     // vuex中用于修改state 的方式
     mutations: {
+        // 管理员获取所有用户信息
+        UPDATE_USER_LIST(state, payload) {
+            state.userList = payload;
+        },
+        // 更新当前登录用户信息
         UPDATE_USER_INFO(state, payload) {
             state.userInfo.basic = {
                 userToken: payload.token,
@@ -126,6 +132,9 @@ export default new vuex.Store({
         },
         getUserpermission(state) {
             return state.userInfo.all.permission;
+        },
+        getAllUserInfo(state) {
+            return state.userList;
         }
     }
 });
