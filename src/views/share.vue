@@ -3,7 +3,8 @@
         <div class="tooltip-box">
             <h1>用户分享</h1>
             <p class="tips">
-                网站的建设，并非一朝一夕能够完成的，在繁忙的工作和生活中压榨剩余时间来搭建网站，说起来容易做起来难，我需要你的帮助
+                网站的建设，并非一朝一夕能够完成的，在繁忙的工作和生活中压榨剩余时间来搭建网站，说起来容易做起来难，我需要你的
+                <a href="https://github.com/hec9527/bysj_fontend">帮助</a>
             </p>
         </div>
         <div class="animation-box">
@@ -26,12 +27,7 @@
 
 <script>
 export default {
-    data: () => {
-        return {
-            //
-        };
-    }
-    // 未登录的用户进入直接跳转到首页
+    data: () => {}
 };
 </script>
 
