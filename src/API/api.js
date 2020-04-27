@@ -55,6 +55,11 @@ API.fetchUserInfoAll = () => {
     return cnn.get(URL.GET_USER_INFO_ALL);
 };
 
+// 爬取新数据
+API.fetchSpiderDate = id => {
+    return cnn.get(URL.SPIDER_NEW_DATA + `?id=${id}`);
+};
+
 // 转发
 API.forwardRequest = url => {
     return cnn.get(URL.FORWRAD_REQUEST + `?url=${url}`);

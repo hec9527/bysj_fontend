@@ -44,10 +44,10 @@
 
                 <el-main>
                     <!-- 使用 v-if 模拟路由 -->
-                    <manager-vu v-if="active[0] === '1'" />
-                    <manager-spider v-if="active[0] === '2'" />
-                    <manager-system v-if="active[0] === '3'" />
-                    <manager-setting v-if="active[0] === '4'" />
+                    <manager-vu v-if="active[0] === '1'" :active="active" />
+                    <manager-spider v-if="active[0] === '2'" :active="active" />
+                    <manager-system v-if="active[0] === '3'" :active="active" />
+                    <manager-setting v-if="active[0] === '4'" :active="active" />
                 </el-main>
             </el-container>
         </el-container>
