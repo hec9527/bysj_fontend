@@ -99,7 +99,6 @@ export function checklogin(count, passwd) {
  */
 export function checkRegist(count, passwd1, passwd2) {
     if (passwd1 !== passwd2) {
-        debugger;
         return { flag: false, message: '两次输入的密码不一致' };
     } else {
         return checklogin(count, passwd1);
