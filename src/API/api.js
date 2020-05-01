@@ -80,6 +80,11 @@ API.addUserInfo = data => {
     return cnn.post(URL.ADD_USER_INFO, data);
 };
 
+// 获取心痛日志信息
+API.fetchSystemLog = () => {
+    return cnn.get(URL.GET_SYSTEM_LOG);
+};
+
 // 转发
 API.forwardRequest = url => {
     return cnn.get(URL.FORWRAD_REQUEST + `?url=${url}`);

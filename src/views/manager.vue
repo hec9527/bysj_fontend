@@ -91,7 +91,7 @@ export default {
     height: 50px;
     line-height: 50px;
     font-size: 24px;
-    background: #abf3;
+    background: rgba(255, 255, 255, 0.2);
 }
 .el-aside {
     min-height: calc(100vh - 34px) !important;

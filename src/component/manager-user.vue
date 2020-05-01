@@ -53,7 +53,7 @@
                 <el-table-column prop="lasttime" label="最后登录" width="100" />
                 <el-table-column prop="forbidden" label="禁用">
                     <template slot-scope="scope">
-                        {{ scope.row.forbidden === 0 ? '已禁用' : '已启用' }}
+                        {{ Number(scope.row.forbidden) === 1 ? '已禁用' : '已启用' }}
                     </template>
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="100">

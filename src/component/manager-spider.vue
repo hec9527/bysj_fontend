@@ -64,7 +64,7 @@ export default {
             );
         },
         getSpiderId() {
-            const lis = ['2-1', '2-2', '3-4'];
+            const lis = ['2-1', '2-2', '2-3'];
             for (let i = 0; i < lis.length; i++) {
                 if (lis[i] === this.active) {
                     return i;

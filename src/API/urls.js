@@ -53,6 +53,9 @@ URL.UPDATE_USER_INFO = baseUrl + '/m/update/userInfo';
 // 新增用户数据
 URL.ADD_USER_INFO = baseUrl + '/m/add/userInfo';
 
+// 获取系统日志文件
+URL.GET_SYSTEM_LOG = baseUrl + '/m/get/systemLogs';
+
 // 图片识别API
 URL.IMAGE_IDENTIFY = baseUrl + '/a/post/imageIdentify';
 
