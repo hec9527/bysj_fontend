@@ -20,10 +20,10 @@
         </water-fall>
 
         <!-- 图片弹窗组件 -->
-        <div v-loading="loading" class="imageDownload" ref="downloader" :data="imageInfo" @click="clockDownloader">
+        <div v-loading="loading" class="imageDownload" ref="downloader" :data="imageInfo" @click="closeShowComponent">
             <div v-if="showOperate" class="operate">
                 <div class="btns close">
-                    <i class="el-icon-close" @click="clockDownloader"></i>
+                    <i class="el-icon-close" @click="closeShowComponent"></i>
                 </div>
                 <div class="download-link">
                     <div @click="downloadImage($event, 'cover')">封面</div>
@@ -90,7 +90,7 @@ export default {
                 this.$store.commit('UPDATE_CATEGORY_RESULT', data);
             });
         },
-        clockDownloader() {
+        closeShowComponent() {
             if (this.loading) return false;
             this.$refs.downloader.classList.remove('show');
             this.showOperate = false;

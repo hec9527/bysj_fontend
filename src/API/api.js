@@ -85,6 +85,16 @@ API.fetchSystemLog = () => {
     return cnn.get(URL.GET_SYSTEM_LOG);
 };
 
+// 获取图片信息，中后台管理页面
+API.fetchIamgeInfo = parma => {
+    return cnn.get(parmasConcat(URL.GET_IMAGES_INFO, parma));
+};
+
+// 删除图片信息，中后台管理界面
+API.deleteImageInfo = parma => {
+    return cnn.get(parmasConcat(URL.DELETE_IMAGE_INFO, parma));
+};
+
 // 转发
 API.forwardRequest = url => {
     return cnn.get(URL.FORWRAD_REQUEST + `?url=${url}`);

@@ -56,6 +56,12 @@ URL.ADD_USER_INFO = baseUrl + '/m/add/userInfo';
 // 获取系统日志文件
 URL.GET_SYSTEM_LOG = baseUrl + '/m/get/systemLogs';
 
+// 获取数据库图片信息
+URL.GET_IMAGES_INFO = baseUrl + '/m/get/imageInfo';
+
+// 删除数据库图片信息
+URL.DELETE_IMAGE_INFO = baseUrl + '/m/del/imageInfo';
+
 // 图片识别API
 URL.IMAGE_IDENTIFY = baseUrl + '/a/post/imageIdentify';
 
