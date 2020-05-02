@@ -266,6 +266,7 @@ export default {
     position: relative;
     width: 100%;
     height: 50px;
+    padding: 0 16px;
 }
 h1 {
     font-size: 26px;

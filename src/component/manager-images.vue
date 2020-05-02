@@ -108,6 +108,9 @@ export default {
     flex-direction: row;
     justify-content: space-between;
 }
+.page-title h1 {
+    font-size: 26px;
+}
 .btns span {
     font-size: 12px;
     display: inline-block;
