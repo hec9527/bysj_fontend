@@ -31,7 +31,8 @@ export default new vuex.Store({
         bingDaily: [], // 必应美图的每日图片信息
         englishDaily: {}, // 每日英语最新数据
         userList: [], // 用户列表
-        systemLog: [] //系统日志信息
+        systemLog: [], //系统日志信息
+        systemConfig: {}
     },
 
     // 异步操作使用action，异步结束在action中调用commit执行mutation
@@ -39,6 +40,10 @@ export default new vuex.Store({
 
     // vuex中用于修改state 的方式
     mutations: {
+        // 获取系统的配置文件
+        FETCH_SERVER_CONFIG(state, payload) {
+            state.systemConfig = payload;
+        },
         // 获取所有系统日志成功
         FETCH_SYSTEM_LOG(state, payload) {
             state.systemLog = payload;
@@ -143,6 +148,9 @@ export default new vuex.Store({
         },
         getSystemLog(state) {
             return state.systemLog;
+        },
+        getSystemConfig(state) {
+            return state.systemConfig;
         }
     }
 });

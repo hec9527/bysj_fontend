@@ -62,6 +62,18 @@ URL.GET_IMAGES_INFO = baseUrl + '/m/get/imageInfo';
 // 删除数据库图片信息
 URL.DELETE_IMAGE_INFO = baseUrl + '/m/del/imageInfo';
 
+// 获取服务器配置信息
+URL.GET_SERVER_CONFIG = baseUrl + '/m/get/serverConfig';
+
+// 保存服务器配置信息
+URL.UPDATE_SERVER_CONFIG = baseUrl + '/m/post/saveServerConfig';
+
+// 重启服务器
+URL.RESTART_SERVER = baseUrl + '/m/get/restartServer';
+
+// 关闭服务器
+URL.SHUTDOWN_SERVER = baseUrl + '/m/get/shutdownServer';
+
 // 图片识别API
 URL.IMAGE_IDENTIFY = baseUrl + '/a/post/imageIdentify';
 

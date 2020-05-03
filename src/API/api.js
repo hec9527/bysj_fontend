@@ -95,6 +95,26 @@ API.deleteImageInfo = parma => {
     return cnn.get(parmasConcat(URL.DELETE_IMAGE_INFO, parma));
 };
 
+// 获取服务器配置信息
+API.fetchServerConfig = () => {
+    return cnn.get(URL.GET_SERVER_CONFIG);
+};
+
+// 设置服务器配置信息
+API.saveServerConfig = data => {
+    return cnn.post(URL.UPDATE_SERVER_CONFIG, data);
+};
+
+// 重启服务器
+API.restartServer = () => {
+    return cnn.get(URL.RESTART_SERVER);
+};
+
+// 关闭服务器
+API.shutdownServer = () => {
+    return cnn.get(URL.SHUTDOWN_SERVER);
+};
+
 // 转发
 API.forwardRequest = url => {
     return cnn.get(URL.FORWRAD_REQUEST + `?url=${url}`);

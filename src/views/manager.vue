@@ -47,7 +47,6 @@
                     <manager-vu v-if="active[0] === '1'" :active="active" />
                     <manager-spider v-if="active[0] === '2'" :active="active" />
                     <manager-system v-if="active[0] === '3'" :active="active" />
-                    <manager-setting v-if="active[0] === '4'" :active="active" />
                 </el-main>
             </el-container>
         </el-container>
@@ -59,7 +58,6 @@ import { Container } from 'element-ui';
 import managerVu from '../component/manager-uv.vue';
 import managerSpider from '../component/manager-spider.vue';
 import managerSystem from '../component/manager-system.vue';
-import managerSetting from '../component/manager-setting.vue';
 
 export default {
     data: () => {
@@ -75,8 +73,7 @@ export default {
         elContainer: Container,
         managerVu,
         managerSpider,
-        managerSystem,
-        managerSetting
+        managerSystem
     }
 };
 </script>
