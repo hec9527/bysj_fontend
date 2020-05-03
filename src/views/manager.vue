@@ -30,18 +30,6 @@
             </el-aside>
 
             <el-container>
-                <el-header :height="'50'" style="text-align: right; font-size: 12px">
-                    <el-dropdown>
-                        <!-- TODO 增加用户信息页面跳转， 用户退出 -->
-                        <i class="el-icon-setting" style="margin-right: 15px"></i>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>信息</el-dropdown-item>
-                            <el-dropdown-item>退出</el-dropdown-item>
-                        </el-dropdown-menu>
-                        <span>王小虎</span>
-                    </el-dropdown>
-                </el-header>
-
                 <el-main>
                     <!-- 使用 v-if 模拟路由 -->
                     <manager-vu v-if="active[0] === '1'" :active="active" />
@@ -95,6 +83,8 @@ export default {
 }
 .el-main {
     position: relative;
-    min-height: calc(100vh - 84px);
+    min-height: calc(100vh - 34px);
+    border-radius: 4px;
+    overflow: hidden;
 }
 </style>

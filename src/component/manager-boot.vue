@@ -234,6 +234,7 @@ export default {
     background: rgb(235, 236, 240);
     overflow: scroll;
     padding-bottom: 35px;
+    border-radius: 4px;
 }
 .page-title {
     display: flex;
