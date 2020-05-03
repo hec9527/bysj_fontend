@@ -10,7 +10,7 @@
             srcKey="cover"
             ref="waterfall"
             linkRange="card"
-            :reachBottomDistance="500"
+            :reachBottomDistance="3000"
             :loadingDotCount="5"
             :loadingTimeOut="300"
             @scrollReachBottom="loadMore"
