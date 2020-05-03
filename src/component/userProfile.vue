@@ -4,9 +4,9 @@
         <div class="user-background" @click="editUserBackground">
             <div class="user-avator-wrap">
                 <div class="user-avator">
-                    <i class="el-icon-user-solid"></i>
+                    <i v-if="!userInfo.avator" class="el-icon-user-solid"></i>
                     <!-- 用户头像绑定到此处作为背景 -->
-                    <div class="user-avator-img"></div>
+                    <div v-if="userInfo.avator" class="user-avator-img"></div>
                 </div>
             </div>
         </div>
@@ -32,7 +32,8 @@
         <!-- 用户信息展示 -->
         <div class="user-interaction-data">
             <div class="content">
-                <div class="user-name">hec9527</div>
+                <div class="user-name">{{ userInfo.name }}</div>
+                <!-- <div class="div">{{ userInfo }}</div> -->
                 <div class="user-interaction-wrap">
                     <!-- 下载 -->
                     <div class="download" title="下载次数">
@@ -89,7 +90,7 @@
 import { delUserInfo } from '../tools/util';
 import { Notification } from 'element-ui';
 import API from '../API/API';
-// import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import live2d from '../component/live2d.vue';
 
 export default {
@@ -139,9 +140,14 @@ export default {
         // 编辑用户背景墙
         editUserBackground() {
             //
+        },
+        ...mapGetters(['getUserAllInfo'])
+    },
+    computed: {
+        userInfo: function() {
+            return this.getUserAllInfo();
         }
     },
-    computed: {},
     components: {
         live2d
     }
@@ -173,6 +179,7 @@ export default {
     justify-content: center;
     align-content: center;
     z-index: 10;
+    cursor: pointer;
 }
 .user-avator {
     position: relative;
@@ -273,6 +280,7 @@ export default {
     font-size: 70px;
 }
 .op-btns {
+    background: #fff;
     position: absolute;
     right: 0;
     width: 60px;
