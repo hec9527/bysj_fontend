@@ -39,9 +39,9 @@
                 <el-table-column prop="vip" label="VIP" />
                 <el-table-column prop="level" label="等级" />
                 <el-table-column prop="balance" label="余额" width="140" />
-                <el-table-column prop="permission" label="权限">
+                <el-table-column prop="permission" label="权限" width="120">
                     <template slot-scope="scope">
-                        {{ scope.row.permission === 0 ? '管理员' : '普通用户' }}
+                        {{ ['超级管理员', '管理员', '会员用户', '普通用户'][scope.row.permission] || '其它用户' }}
                     </template>
                 </el-table-column>
                 <el-table-column prop="qq" label="QQ" width="120" />
@@ -53,7 +53,9 @@
                 <el-table-column prop="lasttime" label="最后登录" width="100" />
                 <el-table-column prop="forbidden" label="禁用">
                     <template slot-scope="scope">
-                        {{ Number(scope.row.forbidden) === 1 ? '已禁用' : '已启用' }}
+                        <span :style="{ color: Number(scope.row.forbidden) === 1 ? 'red' : 'green' }">
+                            {{ Number(scope.row.forbidden) === 1 ? '已禁用' : '已启用' }}
+                        </span>
                     </template>
                 </el-table-column>
                 <el-table-column fixed="right" label="操作" width="100">
@@ -92,7 +94,7 @@
         </el-dialog>
 
         <!-- 修改已有用户 -->
-        <el-dialog title="修改用户信息" width="460" :visible.sync="editUserInfoModal">
+        <el-dialog title="修改用户信息" width="460" class="changeUserInfo" :visible.sync="editUserInfoModal">
             <el-form ref="form" :model="editData" label-width="80px">
                 <el-form-item label="账户名">
                     <el-input v-model="editData.count"></el-input>
@@ -107,10 +109,10 @@
                     <el-input v-model="editData.age" type="number" min="0" max="200"></el-input>
                 </el-form-item>
                 <el-form-item label="性别">
-                    <el-select v-model="editData.sex" de placeholder="来选一个吧">
-                        <el-option label="男" value="0"></el-option>
-                        <el-option label="女" value="1"></el-option>
-                        <el-option label="保密" value="2"></el-option>
+                    <el-select v-model="editData.sex" placeholder="来选一个吧">
+                        <el-option label="男" :value="0"></el-option>
+                        <el-option label="女" :value="1"></el-option>
+                        <el-option label="保密" :value="2"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="VIP">
@@ -123,7 +125,12 @@
                     <el-input v-model="editData.balance" type="number" min="0" max="9999999"></el-input>
                 </el-form-item>
                 <el-form-item label="权限">
-                    <el-input v-model="editData.permission" type="number" min="0" max="1"></el-input>
+                    <el-select v-model="editData.permission" placeholder="用户权限">
+                        <el-option label="超级管理员" :value="0"></el-option>
+                        <el-option label="管理员" :value="1"></el-option>
+                        <el-option label="会员用户" :value="2"></el-option>
+                        <el-option label="普通用户" :value="3"></el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="QQ">
                     <el-input v-model="editData.qq"></el-input>
@@ -144,7 +151,10 @@
                     <el-input v-model="editData.motto"></el-input>
                 </el-form-item>
                 <el-form-item label="禁用">
-                    <el-input v-model="editData.forbidden" type="number" max="1" min="0"></el-input>
+                    <el-select v-model="editData.forbidden" placeholder="用户权限">
+                        <el-option label="启用" :value="0"></el-option>
+                        <el-option label="禁用" :value="1"></el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -280,5 +290,9 @@ h1 {
 }
 .btn {
     margin-left: 8px;
+}
+
+.changeUserInfo .el-select {
+    width: 100% !important;
 }
 </style>
