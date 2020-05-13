@@ -107,10 +107,10 @@ export default {
             const self = this;
             const img = document.createElement('img');
             img.onload = function() {
-                elDownload.style = `background: url(${value.cover70});`;
+                elDownload.style = `background: url(${value.cover50});`;
                 self.loading = false;
             };
-            img.src = value.cover70;
+            img.src = value.cover50;
         },
         downloadImage(e, str) {
             window.event ? (window.event.cancelBubble = true) : e.stopPropagation();

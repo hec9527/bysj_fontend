@@ -15,7 +15,7 @@
             :loadingTimeOut="300"
             @scrollReachBottom="loadMore"
             @click="clickImage"
-            @imgError="imageLoadError()"
+            @imgError="imageLoadError"
         >
             <div slot="waterfall-over" :style="{ color: '#fff' }">我也是有底线的....</div>
         </water-fall>
@@ -112,17 +112,17 @@ export default {
             const self = this;
             const img = document.createElement('img');
             img.onload = function() {
-                elDownload.style = `background: url(${value.cover70});`;
+                elDownload.style = `background: url(${value.cover50});`;
                 self.loading = false;
             };
-            img.src = value.cover70;
+            img.src = value.cover50;
         },
         downloadImage(e, str) {
             window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
             downloadImage(this.imageInfo[str]);
         },
-        imageLoadError() {
-            console.log(arguments);
+        imageLoadError(e) {
+            console.error(`Image loading failed\n\t${e}`);
         },
         loadMore() {
             this.fetchData();

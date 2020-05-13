@@ -21,9 +21,9 @@
             <router-link class="nav-items" to="/bing">必应美图</router-link>
             <router-link class="nav-items" to="/daily">每日英语</router-link>
             <router-link v-if="userBasicInfo.userToken" class="nav-items" to="/share">分享</router-link>
-            <!-- TODO 管理员身份登录才可以看到 -->
-            <!-- TODO 修改为响应式更新 -->
-            <router-link v-if="userPermission === 0" class="nav-items" to="/manager">管理</router-link>
+            <router-link v-if="userBasicInfo.userToken && userPermission === 0" class="nav-items" to="/manager">
+                管理
+            </router-link>
             <router-link class="nav-items" to="/indi">个人中心</router-link>
         </div>
         <router-view class="routerView"></router-view>
@@ -44,19 +44,22 @@ export default {
     },
     mounted() {
         console.log('App mounted');
+        // eslint-disable-next-line no-unused-vars
+        const { userName, token } = getUserInfo();
         this.$store.commit('UPDATE_USER_INFO', getUserInfo());
         API.fetchAllCategory().then(res => {
             this.$store.commit('UPDATE_ALL_CATEGORY', res.data);
         });
-        API.fetchUserInfoAll().then(
-            res => {
-                this.$store.commit('UPDATE_USER_INFO_ALL', res.data);
-            },
-            () => {
-                this.$store.commit('UPDATE_USER_INFO_ALL', {});
-                this.$store.commit('UPDATE_USER_INFO', { token: undefined });
-            }
-        );
+        token &&
+            API.fetchUserInfoAll().then(
+                res => {
+                    this.$store.commit('UPDATE_USER_INFO_ALL', res.data);
+                },
+                () => {
+                    this.$store.commit('UPDATE_USER_INFO_ALL', {});
+                    this.$store.commit('UPDATE_USER_INFO', { token: undefined });
+                }
+            );
     },
     computed: {
         category: function() {

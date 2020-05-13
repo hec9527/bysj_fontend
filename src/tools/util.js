@@ -7,8 +7,6 @@
  *     功能性函数
  */
 
-import URL from '../API/urls';
-
 // 账户校验规则
 const patternCount = [
     { pattern: /^(.{0,6}|.{19,})$/, message: '请输入6到18位的用户名' },
@@ -59,16 +57,18 @@ export function parmasConcat(url, option) {
  * @param {String} str
  */
 export function downloadImage(url) {
-    const el = document.createElement('a');
     const lis = url.split('/');
-    if (el.download) {
+    const xml = new XMLHttpRequest();
+    xml.open('GET', url, true);
+    xml.responseType = 'blob';
+    xml.onload = function() {
+        const blob = window.URL.createObjectURL(xml.response);
+        const el = document.createElement('a');
+        el.href = blob;
         el.download = lis[lis.length - 1];
-        el.href = url;
-    } else {
-        el.download = lis[lis.length - 1];
-        el.href = URL.BAIDU_IMAGE_DOWNLOADER + url;
-    }
-    el.click();
+        el.click();
+    };
+    xml.send();
 }
 
 /**
