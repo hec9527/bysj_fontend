@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import API from '../API/API';
+import API from '../API';
 import { mapGetters } from 'vuex';
 import { checklogin, saveUserInfo, getUserName, saveUserName } from '../tools/util';
 import { Loading, Notification } from 'element-ui';

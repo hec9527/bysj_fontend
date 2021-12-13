@@ -48,7 +48,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import API from '../API/API';
+import API from '../API';
 import vueWaterfallEasy from 'vue-waterfall-easy';
 import { mapImageUrl, downloadImage } from '../tools/util';
 import { Notification, Backtop } from 'element-ui';

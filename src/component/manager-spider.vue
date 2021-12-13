@@ -31,7 +31,7 @@
 
 <script>
 import { Loading, Dialog } from 'element-ui';
-import API from '../API/API';
+import API from '../API';
 
 export default {
     props: {

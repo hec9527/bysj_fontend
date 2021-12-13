@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import API from '../API/API';
+import API from '../API';
 import { mapGetters } from 'vuex';
 import { Loading, Carousel, Notification } from 'element-ui';
 

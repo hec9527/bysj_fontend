@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import API from '../API/API';
+import API from '../API';
 import { Notification } from 'element-ui';
 
 export default {

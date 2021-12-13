@@ -170,7 +170,7 @@
 </template>
 
 <script>
-import API from '../API/API';
+import API from '../API';
 import { mapGetters } from 'vuex';
 import { Notification } from 'element-ui';
 

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import API from './API/API';
+import API from './API';
 import { getUserInfo } from './tools/util';
 import { mapGetters } from 'vuex';
 import { Popover } from 'element-ui';

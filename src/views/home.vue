@@ -45,7 +45,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
-// import API from '../API/API';
+// import API from '../API';
 import URL from '../API/urls';
 import { Notification } from 'element-ui';
 

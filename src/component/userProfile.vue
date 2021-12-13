@@ -89,7 +89,7 @@
 <script>
 import { delUserInfo } from '../tools/util';
 import { Notification } from 'element-ui';
-import API from '../API/API';
+import API from '../API';
 import { mapGetters } from 'vuex';
 import live2d from '../component/live2d.vue';
 

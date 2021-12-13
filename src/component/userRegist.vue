@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import API from '../API/API';
+import API from '../API';
 import { checkRegist } from '../tools/util';
 import { Loading, Notification } from 'element-ui';
 

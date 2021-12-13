@@ -167,7 +167,7 @@
 
 <script>
 import { Button, Notification, Dialog, Loading } from 'element-ui';
-import API from '../API/API';
+import API from '../API';
 import { mapGetters } from 'vuex';
 import { checklogin } from '../tools/util';
 
